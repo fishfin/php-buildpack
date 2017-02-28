@@ -130,13 +130,28 @@ class IBMDBInstaller(ExtensionHelper):
         self._log.info(logMsg)
         print logMsg        
 
+    def _install_ibm_db(self, url, hsh, installDir, fileName=None, strip=False, extract=True):
+        # hsh for future use
+        if not fileName:
+            fileName = urlparse(url).path.split('/')[-1]
+        fileToInstall = os.path.join(self._ctx['TMPDIR'], fileName)
+        self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['rm', '-rf', fileToInstall])
+        self._log.debug("Installing direct [%s]", url)
+        self._installer._dwn.custom_extension_download(url, url, fileToInstall)
+        self._log.debug("Abhinav 2 "+ url + " file name " + fileToInstall)
+
+        if extract:
+            return self._installer._unzipUtil.extract(fileToInstall, installDir, strip)
+        else:
+            shutil.copy(fileToInstall, installDir)
+            return installDir
+        
     def _install_direct(self, url, hsh, installDir, fileName=None, strip=False, extract=True):
         # hsh for future use
         if not fileName:
             fileName = urlparse(url).path.split('/')[-1]
         fileToInstall = os.path.join(self._ctx['TMPDIR'], fileName)
         self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['rm', '-rf', fileToInstall])
-
         self._log.debug("Installing direct [%s]", url)
         self._installer._dwn.custom_extension_download(url, url, fileToInstall)
         self._log.debug("Abhinav 2 "+ url + " file name " + fileToInstall)
