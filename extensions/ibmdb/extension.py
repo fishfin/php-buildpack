@@ -139,6 +139,7 @@ class IBMDBInstaller(ExtensionHelper):
 
         self._log.debug("Installing direct [%s]", url)
         self._installer._dwn.custom_extension_download(url, url, fileToInstall)
+        self._log.debug("Abhinav 2 "+ url + " file name " + fileToInstall)
 
         if extract:
             return self._installer._unzipUtil.extract(fileToInstall, installDir, strip)
