@@ -207,14 +207,13 @@ class IBMDBInstaller(ExtensionHelper):
         for ibmdbExtn in ['IBM_DB2']: #, 'PDO', 'PDO_IBM']:
             extnDownloadDir = os.path.join(self._ctx['DOWNLOAD_DIR'],
                                        ibmdbExtn.lower() + '_extn-' + self._ctx[ibmdbExtn + '_VERSION'])
-            self._logMsg ('Abhinav ' + extnDownloadDir)
             self._install_direct(
                 self._ctx[ibmdbExtn + '_DLURL'],
                 None,
                 extnDownloadDir,
                 self._ctx[ibmdbExtn + '_DLFILE'],
                 True)
-
+            #self._logMsg ('Abhinav ' + extnDownloadDir)
             self._runCmd(os.environ, self._ctx['BUILD_DIR'],
                         ['mv',
                          os.path.join(extnDownloadDir, self._zendModuleApiNo, ibmdbExtn.lower() + '.so'),
