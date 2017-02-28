@@ -136,13 +136,15 @@ class IBMDBInstaller(ExtensionHelper):
         if not fileName:
             fileName = urlparse(url).path.split('/')[-1]
         fileToInstall = os.path.join(self._ctx['TMPDIR'], fileName)
-        self._logMsg ('Abhinav 2:' + fileName)
+        self._logMsg ('Abhinav filename:' + fileName)
         self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['rm', '-rf', fileToInstall])
         self._log.debug("Installing direct [%s]", url)
         self._installer._dwn.custom_extension_download(url, url, fileToInstall)
-        self._logMsg ('Abhinav 2:' + fileToInstall)
+        self._logMsg ('Abhinav filetoinstall:' + fileToInstall)
         #self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['mv', fileToInstall, fileToInstall + 'tar.gz'])
         subprocess.call(["mv", fileToInstall, (fileToInstall+'tar.gz')])
+        self._logMsg ('Abhinav filetoinstall again:' + fileToInstall)
+        fileToInstall = fileToInstall + 'tar.gz'
         #self._logMsg ('Abhinav 2:' + fileToInstall)
         #self._logMsg ('Abhinav 2:' + fileToInstall + 'dir '+ installDir )        
 
