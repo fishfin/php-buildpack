@@ -140,7 +140,7 @@ class IBMDBInstaller(ExtensionHelper):
         self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['rm', '-rf', fileToInstall])
         self._log.debug("Installing direct [%s]", url)
         self._installer._dwn.custom_extension_download(url, url, fileToInstall)
-        self._logMsg ('Abhinav filetoinstall & install dir and url :' + fileToInstall + " " + installDir +'\n\n' +url )
+        self._logMsg ('Abhinav filetoinstall & install dir and url :' + fileToInstall + " " + installDir +"   " +url )
         #self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['mv', fileToInstall, fileToInstall + 'tar.gz'])
         subprocess.call(["ls", "-l", fileToInstall])
         subprocess.call(["mv", fileToInstall, fileToInstall+'tar.gz'])
