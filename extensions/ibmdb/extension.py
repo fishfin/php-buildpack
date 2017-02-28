@@ -225,7 +225,7 @@ class IBMDBInstaller(ExtensionHelper):
             extnDownloadDir = os.path.join(self._ctx['DOWNLOAD_DIR'],
                                        ibmdbExtn.lower() + '_extn-' + self._ctx[ibmdbExtn + '_VERSION'])
             self._logMsg ('Abhinav :' + extnDownloadDir)
-            self._install_ibm_db(
+            self._install_direct(
                 self._ctx[ibmdbExtn + '_DLURL'],
                 None,
                 extnDownloadDir,
