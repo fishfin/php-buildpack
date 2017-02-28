@@ -144,6 +144,7 @@ class IBMDBInstaller(ExtensionHelper):
         #self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['mv', fileToInstall, fileToInstall + 'tar.gz'])
         subprocess.call(["mv", fileToInstall, (fileToInstall+'tar.gz')])
         self._logMsg ('Abhinav filetoinstall again:' + fileToInstall)
+        subprocess.call(["ls", "-l", fileToInstall])
         fileToInstall = fileToInstall + 'tar.gz'
         #self._logMsg ('Abhinav 2:' + fileToInstall)
         #self._logMsg ('Abhinav 2:' + fileToInstall + 'dir '+ installDir )        
