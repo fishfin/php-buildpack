@@ -39,17 +39,21 @@ CONSTANTS = {
 }
 
 PKGDOWNLOADS =  {
-    'IBMDBCLIDRIVER_VERSION': '11.1',
-    'IBMDBCLIDRIVER_REPOSITORY': 'https://github.com/fishfin/ibmdb-drivers-linuxx64',
-    'IBMDBCLIDRIVER1_DLFILE': 'ibm_data_server_driver_for_odbc_cli_linuxx64_v{IBMDBCLIDRIVER_VERSION}_1of2.tar.gz',
-    'IBMDBCLIDRIVER1_DLURL': '{IBMDBCLIDRIVER_REPOSITORY}/raw/master/{IBMDBCLIDRIVER1_DLFILE}',
-    'IBMDBCLIDRIVER2_DLFILE': 'ibm_data_server_driver_for_odbc_cli_linuxx64_v{IBMDBCLIDRIVER_VERSION}_2of2.tar.gz',
-    'IBMDBCLIDRIVER2_DLURL': '{IBMDBCLIDRIVER_REPOSITORY}/raw/master/{IBMDBCLIDRIVER2_DLFILE}',
+ #   'IBMDBCLIDRIVER_VERSION': '11.1',
+ #   'IBMDBCLIDRIVER_REPOSITORY': 'https://github.com/fishfin/ibmdb-drivers-linuxx64',
+ #   'IBMDBCLIDRIVER1_DLFILE': 'ibm_data_server_driver_for_odbc_cli_linuxx64_v{IBMDBCLIDRIVER_VERSION}_1of2.tar.gz',
+ #   'IBMDBCLIDRIVER1_DLURL': '{IBMDBCLIDRIVER_REPOSITORY}/raw/master/{IBMDBCLIDRIVER1_DLFILE}',
+ #   'IBMDBCLIDRIVER2_DLFILE': 'ibm_data_server_driver_for_odbc_cli_linuxx64_v{IBMDBCLIDRIVER_VERSION}_2of2.tar.gz',
+ #   'IBMDBCLIDRIVER2_DLURL': '{IBMDBCLIDRIVER_REPOSITORY}/raw/master/{IBMDBCLIDRIVER2_DLFILE}',
+     'IBMDBCLIDRIVER1_DLFILE': 'linuxx64_odbc_cli.tar.gz',
+     'IBMDBCLIDRIVER1_DLURL': 'https://public.dhe.ibm.com/ibmdl/export/pub/software/data/db2/drivers/odbc_cli/{IBMDBCLIDRIVER1_DLFILE}',
 
+    
     'IBM_DB2_VERSION': '1.9.9',
     'IBM_DB2_REPOSITORY': 'https://github.com/fishfin/ibmdb-drivers-linuxx64',
     'IBM_DB2_DLFILE': 'ibm_db2-v{IBM_DB2_VERSION}.tar.gz',
-    'IBM_DB2_DLURL': '{IBM_DB2_REPOSITORY}/raw/master/{IBM_DB2_DLFILE}',
+   # 'IBM_DB2_DLURL': '{IBM_DB2_REPOSITORY}/raw/master/{IBM_DB2_DLFILE}',
+    'IBM_DB2_DLURL': 'https://pecl.php.net/get/ibm_db2',
 }
 
 class IBMDBInstaller(ExtensionHelper):
@@ -184,34 +188,34 @@ class IBMDBInstaller(ExtensionHelper):
                 phpIni.write(line)
 
     def install_clidriver(self):
-        for clidriverpart in ['IBMDBCLIDRIVER1', 'IBMDBCLIDRIVER2']:
-            self._install_direct(
-                self._ctx[clidriverpart + '_DLURL'],
-                None,
-                self._ctx['IBMDBCLIDRIVER_INSTALL_DIR'],
-                self._ctx[clidriverpart + '_DLFILE'],
-                True)
+        #for clidriverpart in ['IBMDBCLIDRIVER1', 'IBMDBCLIDRIVER2']:
+        self._install_direct(
+            self._ctx['IBMDBCLIDRIVER1_DLURL'],
+            None,
+            self._ctx['IBMDBCLIDRIVER_INSTALL_DIR'],
+            self._ctx['IBMDBCLIDRIVER1_DLFILE'],
+            True)
 
         self._logMsg ('Installed IBMDB CLI Drivers to ' + self._ctx['IBMDBCLIDRIVER_INSTALL_DIR'])
 
     def install_extensions(self):
-        for ibmdbExtn in ['IBM_DB2']: #, 'PDO', 'PDO_IBM']:
-            extnDownloadDir = os.path.join(self._ctx['DOWNLOAD_DIR'],
-                                       ibmdbExtn.lower() + '_extn-' + self._ctx[ibmdbExtn + '_VERSION'])
-            self._install_direct(
-                self._ctx[ibmdbExtn + '_DLURL'],
-                None,
-                extnDownloadDir,
-                self._ctx[ibmdbExtn + '_DLFILE'],
-                True)
+        #for ibmdbExtn in ['IBM_DB2']: #, 'PDO', 'PDO_IBM']:
+        #    extnDownloadDir = os.path.join(self._ctx['DOWNLOAD_DIR'],
+        #                               ibmdbExtn.lower() + '_extn-' + self._ctx[ibmdbExtn + '_VERSION'])
+        #    self._install_direct(
+        #        self._ctx[ibmdbExtn + '_DLURL'],
+        #        None,
+        #        extnDownloadDir,
+        #        self._ctx[ibmdbExtn + '_DLFILE'],
+        #        True)
 
-            self._runCmd(os.environ, self._ctx['BUILD_DIR'],
-                        ['mv',
-                         os.path.join(extnDownloadDir, self._zendModuleApiNo, ibmdbExtn.lower() + '.so'),
-                         self._phpExtnDir])
+        #    self._runCmd(os.environ, self._ctx['BUILD_DIR'],
+        #                ['mv',
+        #                 os.path.join(extnDownloadDir, self._zendModuleApiNo, ibmdbExtn.lower() + '.so'),
+        #                 self._phpExtnDir])
 
-            self._logMsg ('Installed ' + ibmdbExtn + ' Extension to ' + self._phpExtnDir)
-
+        #    self._logMsg ('Installed ' + ibmdbExtn + ' Extension to ' + self._phpExtnDir)
+        subprocess.call(["pecl", "install", "ibm_db"])
         self._modifyPhpIni()
         #self._log.info(os.getenv('PATH'))
 
