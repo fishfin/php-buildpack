@@ -49,15 +49,15 @@ PKGDOWNLOADS =  {
      'IBMDBCLIDRIVER1_DLURL': 'https://public.dhe.ibm.com/ibmdl/export/pub/software/data/db2/drivers/odbc_cli/{IBMDBCLIDRIVER1_DLFILE}',
 
     
-    'IBM_DB2_VERSION': '1.9.9',
-    'IBM_DB2_REPOSITORY': 'https://github.com/fishfin/ibmdb-drivers-linuxx64',
-    'IBM_DB2_DLFILE': 'ibm_db2-v{IBM_DB2_VERSION}.tar.gz',
-    'IBM_DB2_DLURL': '{IBM_DB2_REPOSITORY}/raw/master/{IBM_DB2_DLFILE}',
-    #'IBM_DB2_DLURL': 'https://pecl.php.net/get/ibm_db2',
+   # 'IBM_DB2_VERSION': '1.9.9',
+   # 'IBM_DB2_REPOSITORY': 'https://github.com/fishfin/ibmdb-drivers-linuxx64',
+   # 'IBM_DB2_DLFILE': 'ibm_db2-v{IBM_DB2_VERSION}.tar.gz',
+   # 'IBM_DB2_DLURL': '{IBM_DB2_REPOSITORY}/raw/master/{IBM_DB2_DLFILE}',
+    
      
-    # 'IBM_DB2_REPOSITORY': 'https://pecl.php.net/get',
-    # 'IBM_DB2_DLFILE': 'ibm_db2',
-    # 'IBM_DB2_DLURL': '{IBM_DB2_REPOSITORY}/{IBM_DB2_DLFILE}',
+     'IBM_DB2_REPOSITORY': 'https://pecl.php.net/get',
+     'IBM_DB2_DLFILE': 'ibm_db2',
+     'IBM_DB2_DLURL': '{IBM_DB2_REPOSITORY}/{IBM_DB2_DLFILE}',
      
 }
 
