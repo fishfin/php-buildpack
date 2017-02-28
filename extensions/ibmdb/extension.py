@@ -213,14 +213,14 @@ class IBMDBInstaller(ExtensionHelper):
                 extnDownloadDir,
                 self._ctx[ibmdbExtn + '_DLFILE'],
                 True)
-            #self._logMsg ('Abhinav ' + extnDownloadDir)
+
             self._runCmd(os.environ, self._ctx['BUILD_DIR'],
                         ['mv',
                          os.path.join(extnDownloadDir, self._zendModuleApiNo, ibmdbExtn.lower() + '.so'),
                          self._phpExtnDir])
 
             self._logMsg ('Installed ' + ibmdbExtn + ' Extension to ' + self._phpExtnDir)
-        #subprocess.call(["pecl", "install", "ibm_db"])
+
         self._modifyPhpIni()
         #self._log.info(os.getenv('PATH'))
 
