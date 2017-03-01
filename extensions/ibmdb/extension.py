@@ -229,14 +229,14 @@ class IBMDBInstaller(ExtensionHelper):
            #             ['mv',
            #              os.path.join(extnDownloadDir, self._zendModuleApiNo, ibmdbExtn.lower() + '.so'),
            #              self._phpExtnDir])
-            self._runCmd(os.environ, self._ctx['DOWNLOAD_DIR'], ['ls','-l',extnDownloadDir])
+            self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['ls','-l',extnDownloadDir])
             self._logMsg ('extn dwnld dir = ' + extnDownloadDir)
             curdir = os.getcwd()
             #subprocess.call(['ls', '-l', extnDownloadDir])
             self._logMsg ('curdir = ' + curdir)
             os.chdir(extnDownloadDir)
-            self._runCmd(os.environ, self._ctx['DOWNLOAD_DIR'], ['which php'])
-            self._runCmd(os.environ, self._ctx['DOWNLOAD_DIR'], ['pwd'])
+            self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['which php'])
+            self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['pwd'])
             #subprocess.call(['which','php'])
             #subprocess.call(['phpize', '--clean'])
             subprocess.call(['phpize'])
