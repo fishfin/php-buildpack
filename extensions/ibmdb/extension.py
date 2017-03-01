@@ -229,9 +229,7 @@ class IBMDBInstaller(ExtensionHelper):
            #             ['mv',
            #              os.path.join(extnDownloadDir, self._zendModuleApiNo, ibmdbExtn.lower() + '.so'),
            #              self._phpExtnDir])
-            env['PATH'] = ':'.join(filter(None,
-                                      [env.get('PATH', ''),
-                                       os.path.dirname(self._php_path)]))
+            
             self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['ls','-l',extnDownloadDir])
             self._logMsg ('extn dwnld dir = ' + extnDownloadDir)
             curdir = os.getcwd()
