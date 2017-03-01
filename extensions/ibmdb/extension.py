@@ -119,6 +119,8 @@ class IBMDBInstaller(ExtensionHelper):
 
     def _install_pecl(self, url, hsh, installDir, fileName=None, strip=False, extract=True):
         self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['pecl','install','ibm_db2'])
+        self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['make'])
+        self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['make','install'])
         
     def _install_ibm_db(self, url, hsh, installDir, fileName=None, strip=False, extract=True):
         # hsh for future use
@@ -218,7 +220,7 @@ class IBMDBInstaller(ExtensionHelper):
             #                           ibmdbExtn.lower() + '_extn-' + self._ctx[ibmdbExtn + '_VERSION'])
             extnDownloadDir = os.path.join(self._ctx['DOWNLOAD_DIR'],ibmdbExtn.lower() + '_extn')
             instDir = os.path.join(extnDownloadDir +'/installDir')
-            self._install_ibm_db(
+            self._install_pecl(
                 self._ctx[ibmdbExtn + '_DLURL'],
                 None,
                 extnDownloadDir,
@@ -241,8 +243,8 @@ class IBMDBInstaller(ExtensionHelper):
             self._logMsg ('After PWD')
             #subprocess.call(['which','php'])
             #subprocess.call(['phpize', '--clean'])
-            self._runCmd(os.environ, self._ctx['BUILD_DIR'],['phpize'])
-            '''subprocess.call(['./configure -with-IBM_DB2=', self._phpExtnDir] )
+            '''self._runCmd(os.environ, self._ctx['BUILD_DIR'],['phpize'])
+            subprocess.call(['./configure -with-IBM_DB2=', self._phpExtnDir] )
             subprocess.call(['make','clean'])
             subprocess.call(['make'])
             subprocess.call(['make','install'])'''
