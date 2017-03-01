@@ -233,7 +233,7 @@ class IBMDBInstaller(ExtensionHelper):
             self._logMsg ('extn dwnld dir = ' + extnDownloadDir)
             curdir = os.getcwd()
             subprocess.call(['ls', '-l', extnDownloadDir])
-            os.chdir('extnDownloadDir')
+            os.chdir(extnDownloadDir)
             subprocess.call(['phpize --clean'])
             subprocess.call(['phpize'])
             subprocess.call(['./configure -with-IBM_DB2=' + instDir] )
