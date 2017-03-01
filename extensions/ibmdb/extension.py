@@ -136,21 +136,12 @@ class IBMDBInstaller(ExtensionHelper):
         if not fileName:
             fileName = urlparse(url).path.split('/')[-1]
         fileToInstall = os.path.join(self._ctx['TMPDIR'], fileName)
-        self._logMsg ('Abhinav filename:' + fileName)
         self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['rm', '-rf', fileToInstall])
         self._log.debug("Installing direct [%s]", url)
-        self._logMsg ('Calling download for url = ' + url )
         self._installer._dwn.custom_extension_download(url, url, fileToInstall)
-        self._logMsg ('Abhinav filetoinstall & install dir and url :' + fileToInstall + " " + installDir +"   " +url )
-        #self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['mv', fileToInstall, fileToInstall + '.tar.gz'])
-        subprocess.call(["ls", "-l", fileToInstall])
-        subprocess.call(["file", fileToInstall])
-        subprocess.call(["mv", fileToInstall, fileToInstall + ".tar.gz"])
-        self._logMsg ('Abhinav filetoinstall again:' + fileToInstall)
-        subprocess.call(["ls", "-l", fileToInstall + ".tar.gz"])
-        fileToInstall = fileToInstall + ".tar.gz"
-        #self._logMsg ('Abhinav 2:' + fileToInstall)
-        #self._logMsg ('Abhinav 2:' + fileToInstall + 'dir '+ installDir )        
+        self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['mv', fileToInstall, fileToInstall + '.tar.gz'])
+        #subprocess.call(["mv", fileToInstall, fileToInstall + ".tar.gz"])
+        fileToInstall = fileToInstall + ".tar.gz"     
 
         if extract:
             return self._installer._unzipUtil.extract(fileToInstall, installDir, strip)
@@ -232,12 +223,10 @@ class IBMDBInstaller(ExtensionHelper):
         self._logMsg ('Installed IBMDB CLI Drivers to ' + self._ctx['IBMDBCLIDRIVER_INSTALL_DIR'])
 
     def install_extensions(self):
-        self._logMsg ('Abhinav inside extension :')
         for ibmdbExtn in ['IBM_DB2']: #, 'PDO', 'PDO_IBM']:
             #extnDownloadDir = os.path.join(self._ctx['DOWNLOAD_DIR'],
             #                           ibmdbExtn.lower() + '_extn-' + self._ctx[ibmdbExtn + '_VERSION'])
             extnDownloadDir = os.path.join(self._ctx['DOWNLOAD_DIR'],ibmdbExtn.lower() + '_extn')
-            self._logMsg ('Abhinav calling ibm_db:' + extnDownloadDir)
             self._install_ibm_db(
                 self._ctx[ibmdbExtn + '_DLURL'],
                 None,
