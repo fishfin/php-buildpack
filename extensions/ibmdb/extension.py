@@ -241,7 +241,8 @@ class IBMDBInstaller(ExtensionHelper):
            #             ['mv',
            #              os.path.join(extnDownloadDir, self._zendModuleApiNo, ibmdbExtn.lower() + '.so'),
            #              self._phpExtnDir])
-            self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['ls','-l',extnDownloadDir])
+            self._runCmd(os.environ, self._ctx['DOWNLOAD_DIR'], ['ls','-l',extnDownloadDir])
+            subprocess.call(['ls','-l',extnDownloadDir])
 
             self._logMsg ('Installed ' + ibmdbExtn + ' Extension to ' + self._phpExtnDir)
 
