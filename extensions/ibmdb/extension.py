@@ -233,7 +233,7 @@ class IBMDBInstaller(ExtensionHelper):
             self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['ls','-l',extnDownloadDir])
             self._logMsg ('extn dwnld dir = ' + extnDownloadDir)
             curdir = os.getcwd()
-            self._logMsg ("PATH =" + '$PATH')
+            self._logMsg ("PATH =" + {$PATH})
             #subprocess.call(['ls', '-l', extnDownloadDir])
             self._logMsg ('curdir = ' + curdir)
             os.chdir(extnDownloadDir)
