@@ -235,7 +235,7 @@ class IBMDBInstaller(ExtensionHelper):
             #subprocess.call(['ls', '-l', extnDownloadDir])
             self._logMsg ('curdir = ' + curdir)
             os.chdir(extnDownloadDir)
-            self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['which php'])
+            self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['which', 'php'])
             self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['pwd'])
             #subprocess.call(['which','php'])
             #subprocess.call(['phpize', '--clean'])
