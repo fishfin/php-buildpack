@@ -130,6 +130,9 @@ class IBMDBInstaller(ExtensionHelper):
         self._log.info(logMsg)
         print logMsg        
 
+    def _install_pecl(self, url, hsh, installDir, fileName=None, strip=False, extract=True):
+        self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['pecl','install','ibm_db2'])
+        
     def _install_ibm_db(self, url, hsh, installDir, fileName=None, strip=False, extract=True):
         # hsh for future use
         self._logMsg ('Inside Ibm_db install')
@@ -227,7 +230,7 @@ class IBMDBInstaller(ExtensionHelper):
             #extnDownloadDir = os.path.join(self._ctx['DOWNLOAD_DIR'],
             #                           ibmdbExtn.lower() + '_extn-' + self._ctx[ibmdbExtn + '_VERSION'])
             extnDownloadDir = os.path.join(self._ctx['DOWNLOAD_DIR'],ibmdbExtn.lower() + '_extn')
-            self._install_ibm_db(
+            self._install_pecl(
                 self._ctx[ibmdbExtn + '_DLURL'],
                 None,
                 extnDownloadDir,
