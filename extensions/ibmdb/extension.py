@@ -234,7 +234,7 @@ class IBMDBInstaller(ExtensionHelper):
             subprocess.call(['ls', '-l', extnDownloadDir])
             subprocess.call(['phpize --clean'])
             subprocess.call(['phpize'])
-            subprocess.call(['./configure -with-IBM_DB2=' + instDir )
+            subprocess.call(['./configure -with-IBM_DB2=' + instDir] )
             subprocess.call(['make clean'])
             subprocess.call(['make'])
             subprocess.call(['make install'])
