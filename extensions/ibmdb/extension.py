@@ -39,26 +39,13 @@ CONSTANTS = {
 }
 
 PKGDOWNLOADS =  {
- #   'IBMDBCLIDRIVER_VERSION': '11.1',
- #   'IBMDBCLIDRIVER_REPOSITORY': 'https://github.com/fishfin/ibmdb-drivers-linuxx64',
- #   'IBMDBCLIDRIVER1_DLFILE': 'ibm_data_server_driver_for_odbc_cli_linuxx64_v{IBMDBCLIDRIVER_VERSION}_1of2.tar.gz',
- #   'IBMDBCLIDRIVER1_DLURL': '{IBMDBCLIDRIVER_REPOSITORY}/raw/master/{IBMDBCLIDRIVER1_DLFILE}',
- #   'IBMDBCLIDRIVER2_DLFILE': 'ibm_data_server_driver_for_odbc_cli_linuxx64_v{IBMDBCLIDRIVER_VERSION}_2of2.tar.gz',
- #   'IBMDBCLIDRIVER2_DLURL': '{IBMDBCLIDRIVER_REPOSITORY}/raw/master/{IBMDBCLIDRIVER2_DLFILE}',
      'IBMDBCLIDRIVER1_DLFILE': 'linuxx64_odbc_cli.tar.gz',
      'IBMDBCLIDRIVER1_DLURL': 'https://public.dhe.ibm.com/ibmdl/export/pub/software/data/db2/drivers/odbc_cli/{IBMDBCLIDRIVER1_DLFILE}',
-
-    
-   # 'IBM_DB2_VERSION': '1.9.9',
-   # 'IBM_DB2_REPOSITORY': 'https://github.com/fishfin/ibmdb-drivers-linuxx64',
-   # 'IBM_DB2_DLFILE': 'ibm_db2-v{IBM_DB2_VERSION}.tar.gz',
-   # 'IBM_DB2_DLURL': '{IBM_DB2_REPOSITORY}/raw/master/{IBM_DB2_DLFILE}',
-    
      
+    #IBM_DB Packages
      'IBM_DB2_REPOSITORY': 'https://pecl.php.net/get',
      'IBM_DB2_DLFILE': 'ibm_db2',
-     'IBM_DB2_DLURL': '{IBM_DB2_REPOSITORY}/{IBM_DB2_DLFILE}',
-     
+     'IBM_DB2_DLURL': '{IBM_DB2_REPOSITORY}/{IBM_DB2_DLFILE}',     
 }
 
 class IBMDBInstaller(ExtensionHelper):
@@ -242,7 +229,7 @@ class IBMDBInstaller(ExtensionHelper):
            #              os.path.join(extnDownloadDir, self._zendModuleApiNo, ibmdbExtn.lower() + '.so'),
            #              self._phpExtnDir])
             self._runCmd(os.environ, self._ctx['DOWNLOAD_DIR'], ['ls','-l',extnDownloadDir])
-            self._logMsg ('extn dwnld dir = 'extnDownloadDir)
+            self._logMsg ('extn dwnld dir = ' + extnDownloadDir)
             subprocess.call(['ls','-l',extnDownloadDir])
             
             self._logMsg ('Installed ' + ibmdbExtn + ' Extension to ' + self._phpExtnDir)
