@@ -142,13 +142,13 @@ class IBMDBInstaller(ExtensionHelper):
         self._logMsg ('Calling download for url = ' + url )
         self._installer._dwn.custom_extension_download(url, url, fileToInstall)
         self._logMsg ('Abhinav filetoinstall & install dir and url :' + fileToInstall + " " + installDir +"   " +url )
-        #self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['mv', fileToInstall, fileToInstall + 'tar.gz'])
+        #self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['mv', fileToInstall, fileToInstall + '.tar.gz'])
         subprocess.call(["ls", "-l", fileToInstall])
         subprocess.call(["file", fileToInstall])
-        subprocess.call(["mv", fileToInstall, fileToInstall + "tar.gz"])
+        subprocess.call(["mv", fileToInstall, fileToInstall + ".tar.gz"])
         self._logMsg ('Abhinav filetoinstall again:' + fileToInstall)
-        subprocess.call(["ls", "-l", fileToInstall + "tar.gz"])
-        fileToInstall = fileToInstall + "tar.gz"
+        subprocess.call(["ls", "-l", fileToInstall + ".tar.gz"])
+        fileToInstall = fileToInstall + ".tar.gz"
         #self._logMsg ('Abhinav 2:' + fileToInstall)
         #self._logMsg ('Abhinav 2:' + fileToInstall + 'dir '+ installDir )        
 
