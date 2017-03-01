@@ -233,15 +233,16 @@ class IBMDBInstaller(ExtensionHelper):
             self._logMsg ('extn dwnld dir = ' + extnDownloadDir)
             curdir = os.getcwd()
             subprocess.call(['ls', '-l', extnDownloadDir])
+            self._logMsg ('curdir = ' + curdir)
             os.chdir(extnDownloadDir)
-            subprocess.call(['pwd'])
+            '''subprocess.call(['pwd'])
             subprocess.call(['which','php'])
             subprocess.call(['phpize', '--clean'])
             subprocess.call(['phpize'])
             subprocess.call(['./configure -with-IBM_DB2=', self._phpExtnDir] )
             subprocess.call(['make','clean'])
             subprocess.call(['make'])
-            subprocess.call(['make','install'])
+            subprocess.call(['make','install'])'''
             os.chdir(curdir)
             subprocess.call(['pwd'])
             
