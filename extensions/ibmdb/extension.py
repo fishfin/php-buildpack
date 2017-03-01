@@ -100,7 +100,7 @@ class IBMDBInstaller(ExtensionHelper):
             'LD_LIBRARY_PATH': '$LD_LIBRARY_PATH:$HOME/' + self._ibmdbClidriverBaseDir + '/lib',
             #'DB2_CLI_DRIVER_INSTALL_PATH': '$HOME/' + self._ibmdbClidriverBaseDir,
             'PATH': '$HOME/' + self._ibmdbClidriverBaseDir + '/bin:$HOME/'
-                    + self._ibmdbClidriverBaseDir + '/adm:$PATH',
+                    + self._ibmdbClidriverBaseDir + ':$HOME/php/bin:$HOME/php/sbin:' + '/adm:$PATH',
         }
         #self._log.info(env['IBM_DB_HOME'])
         return env
@@ -229,6 +229,9 @@ class IBMDBInstaller(ExtensionHelper):
            #             ['mv',
            #              os.path.join(extnDownloadDir, self._zendModuleApiNo, ibmdbExtn.lower() + '.so'),
            #              self._phpExtnDir])
+            env['PATH'] = ':'.join(filter(None,
+                                      [env.get('PATH', ''),
+                                       os.path.dirname(self._php_path)]))
             self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['ls','-l',extnDownloadDir])
             self._logMsg ('extn dwnld dir = ' + extnDownloadDir)
             curdir = os.getcwd()
