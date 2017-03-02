@@ -98,7 +98,6 @@ class IBMDBInstaller(ExtensionHelper):
         env = {
             #'IBM_DB_HOME': '$IBM_DB_HOME:$HOME/' + self._ibmdbClidriverBaseDir + '/lib',
             'LD_LIBRARY_PATH': '$LD_LIBRARY_PATH:$HOME/' + self._ibmdbClidriverBaseDir + '/lib',
-            'DB2LIB': self._ctx['IBMDBCLIDRIVER_INSTALL_DIR'],
             #'DB2_CLI_DRIVER_INSTALL_PATH': '$HOME/' + self._ibmdbClidriverBaseDir,
             'PATH': '/tmp/app/php/bin:/tmp/app/php/lib:' +'$HOME/' + self._ibmdbClidriverBaseDir + '/bin:$HOME/'
                     + self._ibmdbClidriverBaseDir + '/adm:$PATH',
@@ -214,7 +213,7 @@ class IBMDBInstaller(ExtensionHelper):
         self._logMsg ('Installed IBMDB CLI Drivers to ' + self._ctx['IBMDBCLIDRIVER_INSTALL_DIR'])
 
     def install_extensions(self):
-        temp = self._service_environment()
+        self._service_environment()
         for ibmdbExtn in ['IBM_DB2']: #, 'PDO', 'PDO_IBM']:
             #extnDownloadDir = os.path.join(self._ctx['DOWNLOAD_DIR'],
             #                           ibmdbExtn.lower() + '_extn-' + self._ctx[ibmdbExtn + '_VERSION'])
@@ -240,14 +239,14 @@ class IBMDBInstaller(ExtensionHelper):
             #os.chdir(extnDownloadDir)
             self._logMsg ('After chdir')
             #self._runCmd(os.environ, self._ctx['BUILD_DIR'],['/tmp/app/php/bin/php','-i'])
-        ''' self._runCmd(os.environ, self._ctx['BUILD_DIR'],['/tmp/app/php/bin/phpize'])
+            self._runCmd(os.environ, self._ctx['BUILD_DIR'],['phpize'])
             self._runCmd(os.environ, self._ctx['BUILD_DIR'],['./configure -with-IBM_DB2='+ self._ctx['IBMDBCLIDRIVER_INSTALL_DIR']] )
             self._runCmd(os.environ, self._ctx['BUILD_DIR'],['make','clean'])
             self._runCmd(os.environ, self._ctx['BUILD_DIR'],['make'])
-            self._runCmd(os.environ, self._ctx['BUILD_DIR'],['make','install'])'''
+            self._runCmd(os.environ, self._ctx['BUILD_DIR'],['make','install'])
             #os.chdir(curdir)
             
-            #self._logMsg ('Installed ' + ibmdbExtn + ' Extension to ' + self._phpExtnDir)
+            self._logMsg ('Installed ' + ibmdbExtn + ' Extension to ' + self._phpExtnDir)
 
         self._modifyPhpIni()
         #self._log.info(os.getenv('PATH'))
