@@ -246,7 +246,7 @@ class IBMDBInstaller(ExtensionHelper):
             self._runCmd(os.environ, self._ctx['BUILD_DIR'],['make','install'])'''
             #os.chdir(curdir)
             
-            self._logMsg ('Installed ' + ibmdbExtn + ' Extension to ' + self._phpExtnDir)
+            #self._logMsg ('Installed ' + ibmdbExtn + ' Extension to ' + self._phpExtnDir)
 
         self._modifyPhpIni()
         #self._log.info(os.getenv('PATH'))
