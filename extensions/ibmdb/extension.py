@@ -96,7 +96,7 @@ class IBMDBInstaller(ExtensionHelper):
     def _service_environment(self):
         self._log.info(__file__ + "->service_environment")
         env = {
-            'IBM_DB_HOME': '$IBM_DB_HOME:$HOME/' + self._ibmdbClidriverBaseDir + '/lib',
+            #'IBM_DB_HOME': '$IBM_DB_HOME:$HOME/' + self._ibmdbClidriverBaseDir + '/lib',
             'LD_LIBRARY_PATH': '$LD_LIBRARY_PATH:$HOME/' + self._ibmdbClidriverBaseDir + '/lib',
             #'DB2_CLI_DRIVER_INSTALL_PATH': '$HOME/' + self._ibmdbClidriverBaseDir,
             'PATH': '$HOME/' + self._ibmdbClidriverBaseDir + '/bin:$HOME/'
