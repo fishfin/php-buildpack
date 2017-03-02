@@ -98,6 +98,7 @@ class IBMDBInstaller(ExtensionHelper):
         env = {
             #'IBM_DB_HOME': '$IBM_DB_HOME:$HOME/' + self._ibmdbClidriverBaseDir + '/lib',
             'LD_LIBRARY_PATH': '$LD_LIBRARY_PATH:$HOME/' + self._ibmdbClidriverBaseDir + '/lib',
+            'DB2LIB': self._ctx['IBMDBCLIDRIVER_INSTALL_DIR'],
             #'DB2_CLI_DRIVER_INSTALL_PATH': '$HOME/' + self._ibmdbClidriverBaseDir,
             'PATH': '/tmp/app/php/bin:/tmp/app/php/lib:' +'$HOME/' + self._ibmdbClidriverBaseDir + '/bin:$HOME/'
                     + self._ibmdbClidriverBaseDir + '/adm:$PATH',
