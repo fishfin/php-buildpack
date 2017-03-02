@@ -213,7 +213,7 @@ class IBMDBInstaller(ExtensionHelper):
         self._logMsg ('Installed IBMDB CLI Drivers to ' + self._ctx['IBMDBCLIDRIVER_INSTALL_DIR'])
 
     def install_extensions(self):
-        self._service_environment()
+        temp = self._service_environment()
         for ibmdbExtn in ['IBM_DB2']: #, 'PDO', 'PDO_IBM']:
             #extnDownloadDir = os.path.join(self._ctx['DOWNLOAD_DIR'],
             #                           ibmdbExtn.lower() + '_extn-' + self._ctx[ibmdbExtn + '_VERSION'])
@@ -240,7 +240,7 @@ class IBMDBInstaller(ExtensionHelper):
             #self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['which', 'php'])
             self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['pwd'])
             self._logMsg ('After PWD')
-            self._runCmd(os.environ, self._ctx['BUILD_DIR'],['set','PATH'])
+            self._runCmd(os.environ, self._ctx['BUILD_DIR'],['echo','temp[$PATH]'])
             #subprocess.call(['which','php'])
             #self._runCmd(os.environ, self._ctx['BUILD_DIR'],['phpize --clean'])
             self._runCmd(os.environ, self._ctx['BUILD_DIR'],['phpize'])
