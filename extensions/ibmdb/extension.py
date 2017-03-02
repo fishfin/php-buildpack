@@ -240,7 +240,7 @@ class IBMDBInstaller(ExtensionHelper):
             #self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['which', 'php'])
             self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['pwd'])
             self._logMsg ('After PWD')
-            self._runCmd(os.environ, self._ctx['BUILD_DIR'],['echo','$PATH'])
+            self._runCmd(os.environ, self._ctx['BUILD_DIR'],['echo',$PATH])
             subprocess.call(['echo','$PATH'])
             #self._runCmd(os.environ, self._ctx['BUILD_DIR'],['phpize --clean'])
             self._runCmd(os.environ, self._ctx['BUILD_DIR'],['phpize'])
