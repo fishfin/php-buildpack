@@ -5,6 +5,7 @@ import re
 import StringIO
 import subprocess
 import sys
+import time
 from urlparse import urlparse
 from build_pack_utils import stream_output
 from build_pack_utils import utils
@@ -238,6 +239,7 @@ class IBMDBInstaller(ExtensionHelper):
             #subprocess.call(['ls', '-l', extnDownloadDir])
             self._logMsg ('curdir = ' + curdir)
             os.chdir(extnDownloadDir)
+            time.sleep(5)
             newdir = os.getcwd()
             subprocess.call(['ls','-ltr',newdir])
             self._logMsg ('After chdir')
