@@ -219,7 +219,7 @@ class IBMDBInstaller(ExtensionHelper):
             #                           ibmdbExtn.lower() + '_extn-' + self._ctx[ibmdbExtn + '_VERSION'])
             extnDownloadDir = os.path.join(self._ctx['DOWNLOAD_DIR'],ibmdbExtn.lower() + '_extn')
             instDir = os.path.join(extnDownloadDir +'/installDir')
-            self._install_ibm_db(
+            self._install_pecl(
                 self._ctx[ibmdbExtn + '_DLURL'],
                 None,
                 extnDownloadDir,
@@ -232,7 +232,7 @@ class IBMDBInstaller(ExtensionHelper):
            #              self._phpExtnDir])
             
             #self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['ls','-l',extnDownloadDir])
-            self._logMsg ('extn dwnld dir = ' + extnDownloadDir)
+        ''' self._logMsg ('extn dwnld dir = ' + extnDownloadDir)
             curdir = os.getcwd()
             #subprocess.call(['ls', '-l', extnDownloadDir])
             self._logMsg ('curdir = ' + curdir)
@@ -250,7 +250,7 @@ class IBMDBInstaller(ExtensionHelper):
             self._runCmd(os.environ, self._ctx['BUILD_DIR'],['make'])
             self._runCmd(os.environ, self._ctx['BUILD_DIR'],['make','install'])
             os.chdir(curdir)
-            subprocess.call(['pwd'])
+            subprocess.call(['pwd'])'''
             
             self._logMsg ('Installed ' + ibmdbExtn + ' Extension to ' + self._phpExtnDir)
 
