@@ -239,7 +239,7 @@ class IBMDBInstaller(ExtensionHelper):
             #subprocess.call(['ls', '-l', extnDownloadDir])
             self._logMsg ('curdir = ' + curdir)
             os.chdir(extnDownloadDir)
-            time.sleep(15)
+            time.sleep(20)
             newdir = os.getcwd()
             subprocess.call(['ls','-ltr',newdir])
             self._logMsg ('After chdir')
