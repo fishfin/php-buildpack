@@ -244,7 +244,7 @@ class IBMDBInstaller(ExtensionHelper):
             self._logMsg ('new dir ls')
             subprocess.call(['ls', '-lrt', newdir ])
             #self._runCmd(os.environ, self._ctx['BUILD_DIR'],['/tmp/app/php/bin/php','-i'])
-            self._runCmd(os.environ, self._ctx['BUILD_DIR'],['phpize'])
+            self._runCmd(os.environ, self._ctx['BUILD_DIR'],['/tmp/app/php/bin/phpize'])
             self._runCmd(os.environ, self._ctx['BUILD_DIR'],['./configure -with-IBM_DB2='+ self._ctx['IBMDBCLIDRIVER_INSTALL_DIR']] )
             self._runCmd(os.environ, self._ctx['BUILD_DIR'],['make','clean'])
             self._runCmd(os.environ, self._ctx['BUILD_DIR'],['make'])
