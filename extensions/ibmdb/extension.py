@@ -242,6 +242,7 @@ class IBMDBInstaller(ExtensionHelper):
             time.sleep(20)
             newdir = os.getcwd()
             subprocess.call(['ls','-ltr',newdir])
+            time.sleep(2)
             self._logMsg ('After chdir')
             
             #self._runCmd(os.environ, self._ctx['BUILD_DIR'],['/tmp/app/php/bin/php','-i'])
