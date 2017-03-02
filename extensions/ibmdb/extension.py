@@ -242,7 +242,7 @@ class IBMDBInstaller(ExtensionHelper):
             self._logMsg ('After PWD')
             #self._logMsg (env[‘PATH’])
             #self._runCmd(os.environ, self._ctx['BUILD_DIR'],['echo',env])
-            self._runCmd(os.environ, self._ctx['BUILD_DIR'],['echo $PATH’]])
+            #self._runCmd(os.environ, self._ctx['BUILD_DIR'],['echo $PATH’]])
             #self._runCmd(os.environ, self._ctx['BUILD_DIR'],['phpize --clean'])
             self._runCmd(os.environ, self._ctx['BUILD_DIR'],['phpize'])
             self._runCmd(os.environ, self._ctx['BUILD_DIR'],['./configure -with-IBM_DB2='+ '$HOME/' + self._ibmdbClidriverBaseDir + '/lib'] )
