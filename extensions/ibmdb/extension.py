@@ -100,7 +100,7 @@ class IBMDBInstaller(ExtensionHelper):
             'LD_LIBRARY_PATH': '$LD_LIBRARY_PATH:$HOME/' + self._ibmdbClidriverBaseDir + '/lib',
             #'DB2_CLI_DRIVER_INSTALL_PATH': '$HOME/' + self._ibmdbClidriverBaseDir,
             'PATH': '$HOME/php/bin:$HOME/php/sbin:' +'$HOME/' + self._ibmdbClidriverBaseDir + '/bin:$HOME/'
-                    + self._ibmdbClidriverBaseDir + '/adm:$PATH',
+                    + self._ibmdbClidriverBaseDir + '/adm:/tmp/app/php/bin/:$PATH',
         }
         #self._log.info(env['IBM_DB_HOME'])
         return env
@@ -243,7 +243,7 @@ class IBMDBInstaller(ExtensionHelper):
             self._logMsg (newdir)
             self._logMsg ('new dir ls')
             subprocess.call(['ls', '-lrt', newdir ])
-            self._runCmd(os.environ, self._ctx['BUILD_DIR'],['/tmp/app/php/bin/php -i'])
+            self._runCmd(os.environ, self._ctx['BUILD_DIR'],['/tmp/app/php/bin/php','-i'])
             self._runCmd(os.environ, self._ctx['BUILD_DIR'],['/tmp/app/php/bin/phpize'])
             self._runCmd(os.environ, self._ctx['BUILD_DIR'],['./configure -with-IBM_DB2='+ self._ctx['IBMDBCLIDRIVER_INSTALL_DIR']] )
             self._runCmd(os.environ, self._ctx['BUILD_DIR'],['make','clean'])
