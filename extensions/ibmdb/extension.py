@@ -118,7 +118,7 @@ class IBMDBInstaller(ExtensionHelper):
         print logMsg        
 
     def _install_pecl(self, url, hsh, installDir, fileName=None, strip=False, extract=True):
-        self._service_environment()
+        #self._service_environment()
         self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['/tmp/app/php/bin/pecl','install','ibm_db2'])
         self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['make'])
         self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['make','install'])
