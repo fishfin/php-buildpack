@@ -251,7 +251,7 @@ class IBMDBInstaller(ExtensionHelper):
             #subprocess.call(['/tmp/app/php/bin/phpize'])
             time.sleep(15)
             subprocess.call(['ls','-ltr',newdir])
-            sleep(3)
+            time.sleep(3)
             self._runCmd(os.environ, self._ctx['BUILD_DIR'],['./configure -with-IBM_DB2='+ self._ctx['IBMDBCLIDRIVER_INSTALL_DIR']] )
             time.sleep(20)
             self._runCmd(os.environ, self._ctx['BUILD_DIR'],['make','clean'])
