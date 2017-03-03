@@ -238,7 +238,7 @@ class IBMDBInstaller(ExtensionHelper):
             curdir = os.getcwd()
             #subprocess.call(['ls', '-l', extnDownloadDir])
             self._logMsg ('curdir = ' + curdir)
-            os.chdir(extnDownloadDir)
+        ''' os.chdir(extnDownloadDir)
             time.sleep(20)
             newdir = os.getcwd()
             subprocess.call(['ls','-ltr',newdir])
@@ -262,7 +262,7 @@ class IBMDBInstaller(ExtensionHelper):
             time.sleep(120)
             self._runCmd(os.environ, self._ctx['BUILD_DIR'],['make','install'])
             time.sleep(6)
-            os.chdir(curdir)
+            os.chdir(curdir)'''
             
             self._logMsg ('Installed ' + ibmdbExtn + ' Extension to ' + self._phpExtnDir)
 
