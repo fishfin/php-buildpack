@@ -93,9 +93,10 @@ class PHPExtension(ExtensionHelper):
             }
 
     def _service_environment(self):
+        phpPath = os.path.join(ctx["PHP_INSTALL_PATH"])
         env = {
-            'LD_LIBRARY_PATH': '$LD_LIBRARY_PATH:$HOME/php/lib',
-            'PATH': '$PATH:$HOME/php/bin:$HOME/php/sbin',
+            'LD_LIBRARY_PATH': '$LD_LIBRARY_PATH:'+ phpPath+'/lib',
+            'PATH': '$PATH:' + phpPath + '/bin:$HOME/php/sbin',
             'PHPRC': '$HOME/php/etc'
         }
         if 'snmp' in self._ctx['PHP_EXTENSIONS']:
