@@ -98,9 +98,9 @@ class IBMDBInstaller(ExtensionHelper):
         self._log.info(__file__ + "->service_environment")
         env = {
             #'IBM_DB_HOME': '$IBM_DB_HOME:$HOME/' + self._ibmdbClidriverBaseDir + '/lib',
-            'LD_LIBRARY_PATH': '$LD_LIBRARY_PATH:$HOME/' + self._ibmdbClidriverBaseDir + '/lib',
+            'LD_LIBRARY_PATH': self._phpRoot + '/lib:' + '$LD_LIBRARY_PATH:$HOME/' + self._ibmdbClidriverBaseDir + '/lib',
             #'DB2_CLI_DRIVER_INSTALL_PATH': '$HOME/' + self._ibmdbClidriverBaseDir,
-            'PATH': '/tmp/app/php/bin:/tmp/app/php/lib:' + '$HOME/' + self._ibmdbClidriverBaseDir + '/bin:$HOME/'
+            'PATH': self._phpRoot + '/bin:' + '$HOME/' + self._ibmdbClidriverBaseDir + '/bin:$HOME/'
                     + self._ibmdbClidriverBaseDir + '/adm:$PATH',
         }
         #self._log.info(env['IBM_DB_HOME'])
@@ -256,10 +256,11 @@ class IBMDBInstaller(ExtensionHelper):
             phpIniDir = os.path.join(phpRoot, 'etc')
             phpIniPath = os.path.join(phpIniDir, 'php.ini')
             phpExtnDir = os.path.join(phpInstallDir, 'extensions')
-            self._logMsg(self._runCmd(os.environ,self._ctx['BUILD_DIR'], [phpBinPath,'-i']))
-            self._logMsg(self._runCmd(os.environ,self._ctx['BUILD_DIR'], [phpBinPath1,'-i']))
-            self._logMsg(self._runCmd(os.environ,self._ctx['BP_DIR'], [phpBinPath,'-i']))
-            self._logMsg(self._runCmd(os.environ,self._ctx['BP_DIR'], [phpBinPath1,'-i']))
+            phpi = self._runCmd(os.environ,self._ctx['BUILD_DIR'], [phpBinPath,'-i'])
+            self._logMsg('phpi =' + phpi)
+            #self._logMsg(self._runCmd(os.environ,self._ctx['BUILD_DIR'], [phpBinPath1,'-i']))
+            #self._logMsg(self._runCmd(os.environ,self._ctx['BP_DIR'], [phpBinPath,'-i']))
+            #self._logMsg(self._runCmd(os.environ,self._ctx['BP_DIR'], [phpBinPath1,'-i']))
 
             self._compilationEnv = os.environ
             self._phpizeDir = os.path.dirname(__file__)
