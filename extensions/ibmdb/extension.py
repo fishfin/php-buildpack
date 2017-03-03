@@ -243,8 +243,8 @@ class IBMDBInstaller(ExtensionHelper):
             self._logMsg('Detected PHP Version ' + self._ctx['PHP_VERSION'])
             self._logMsg('Using build pack directory ' + self._ctx['BP_DIR'])
             self._logMsg('Using build directory ' + self._ctx['BUILD_DIR'])
-            self._phpRoot = os.path.join(self._ctx['BUILD_DIR'], 'php')
-            self._logMsg(self.phpRoot)
+            phpRoot = os.path.join(self._ctx['BUILD_DIR'], 'php')
+            self._logMsg(phpRoot)
 
             phpRoot = os.path.join(self._ctx['BUILD_DIR'], 'php')
             phpRoot1 = os.path.join(self._ctx['BP_DIR'], 'php')      
