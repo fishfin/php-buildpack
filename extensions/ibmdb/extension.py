@@ -257,18 +257,19 @@ class IBMDBInstaller(ExtensionHelper):
             phpIniPath = os.path.join(phpIniDir, 'php.ini')
             phpExtnDir = os.path.join(phpInstallDir, 'extensions')
             self._logMsg('phpbinpath = '+  phpBinDir)
-            phpi = self._runCmd(os.environ,self._ctx['BUILD_DIR'], [phpBinPath,'-i'])
+            self._runCmd(os.environ,self._ctx['BUILD_DIR'], [phpBinPath+'/php','-i'])
             subprocess.call(['/tmp/app/php/bin/php','-i'])
+            os.chdir(extnDownloadDir)
             subprocess.call(['/tmp/app/php/bin/phpize'])
+            os.chdir(curdir)
             #self._logMsg('phpi =' + phpi)
             #self._logMsg(self._runCmd(os.environ,self._ctx['BUILD_DIR'], [phpBinPath1,'-i']))
             #self._logMsg(self._runCmd(os.environ,self._ctx['BP_DIR'], [phpBinPath,'-i']))
             #self._logMsg(self._runCmd(os.environ,self._ctx['BP_DIR'], [phpBinPath1,'-i']))
 
-            self._compilationEnv = os.environ
+            '''self._compilationEnv = os.environ
             self._phpizeDir = os.path.dirname(__file__)
-        ''' os.chdir(extnDownloadDir)
-            time.sleep(20)
+            os.chdir(extnDownloadDir)
             newdir = os.getcwd()
             subprocess.call(['ls','-ltr',newdir])
             time.sleep(2)
