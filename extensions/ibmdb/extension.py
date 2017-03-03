@@ -260,9 +260,10 @@ class IBMDBInstaller(ExtensionHelper):
             self._runCmd(os.environ,self._ctx['BUILD_DIR'], ['ls','-lrt',extnDownloadDir])
             self._logMsg ('extn dwnld dir = ' + extnDownloadDir)
             subprocess.call(['ls', '-l',extnDownloadDir])
+            subprocess.call(['chmod','777',extnDownloadDir])
             self._logMsg ('ls -l')
             subprocess.call(['ls', '-l'])
-            subprocess.call(['chmod','777',extnDownloadDir])
+            
             self._runCmd(os.environ,self._ctx['BUILD_DIR'], [phpizeExecPath])
             #time.sleep(5)
             self._runCmd(os.environ, self._ctx['BUILD_DIR'],['./configure -with-IBM_DB2='+ self._ctx['IBMDBCLIDRIVER_INSTALL_DIR']] )
