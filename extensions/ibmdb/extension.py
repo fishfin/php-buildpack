@@ -97,7 +97,7 @@ class IBMDBInstaller(ExtensionHelper):
     def _service_environment(self):
         self._log.info(__file__ + "->service_environment")
         env = {
-            #'IBM_DB_HOME': '$IBM_DB_HOME:$HOME/' + self._ibmdbClidriverBaseDir + '/lib',
+            'IBM_DB_HOME': '$IBM_DB_HOME:$HOME/' + self._ibmdbClidriverBaseDir + '/lib',
             'LD_LIBRARY_PATH': self._phpRoot + '/lib:' + '$LD_LIBRARY_PATH:$HOME/' + self._ibmdbClidriverBaseDir + '/lib',
             #'DB2_CLI_DRIVER_INSTALL_PATH': '$HOME/' + self._ibmdbClidriverBaseDir,
             'PATH': self._phpRoot + '/bin:' + '$HOME/' + self._ibmdbClidriverBaseDir + '/bin:$HOME/'
@@ -119,8 +119,8 @@ class IBMDBInstaller(ExtensionHelper):
         print logMsg        
 
     def _install_pecl(self, url, hsh, installDir, fileName=None, strip=False, extract=True):
-        #self._service_environment()
-        self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['/tmp/app/php/bin/pecl','install','ibm_db2'])
+        self._service_environment()
+        self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['pecl','install','ibm_db2'])
         self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['make'])
         self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['make','install'])
         
@@ -221,7 +221,7 @@ class IBMDBInstaller(ExtensionHelper):
             #                           ibmdbExtn.lower() + '_extn-' + self._ctx[ibmdbExtn + '_VERSION'])
             extnDownloadDir = os.path.join(self._ctx['DOWNLOAD_DIR'],ibmdbExtn.lower() + '_extn')
             instDir = os.path.join(extnDownloadDir +'/installDir')
-            self._install_ibm_db(
+            self._install_pecl(
                 self._ctx[ibmdbExtn + '_DLURL'],
                 None,
                 extnDownloadDir,
