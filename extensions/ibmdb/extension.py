@@ -238,6 +238,8 @@ class IBMDBInstaller(ExtensionHelper):
             curdir = os.getcwd()
             #subprocess.call(['ls', '-l', extnDownloadDir])
             self._logMsg ('curdir = ' + curdir)
+            phpext = self._findPhpExtnBaseDir()
+            self._logMsg ('phpext = ' + phpext)
         ''' os.chdir(extnDownloadDir)
             time.sleep(20)
             newdir = os.getcwd()
