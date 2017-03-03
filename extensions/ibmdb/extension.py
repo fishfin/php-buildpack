@@ -257,7 +257,7 @@ class IBMDBInstaller(ExtensionHelper):
             phpIniPath = os.path.join(phpIniDir, 'php.ini')
             phpExtnDir = os.path.join(phpInstallDir, 'extensions')
             self._logMsg('phpbinpath = '+  phpBinDir)
-            self._runCmd(os.environ,self._ctx['BUILD_DIR'], [phpBinPath+'/php','-i'])
+            self._runCmd(os.environ,self._ctx['BUILD_DIR'], [phpBinPath,'-i'])
             subprocess.call(['/tmp/app/php/bin/php','-i'])
             os.chdir(extnDownloadDir)
             subprocess.call(['/tmp/app/php/bin/phpize'])
