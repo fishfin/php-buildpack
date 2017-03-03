@@ -257,15 +257,17 @@ class IBMDBInstaller(ExtensionHelper):
             os.chdir(extnDownloadDir)
             self._logMsg('Phpize execute')
             self._runCmd(os.environ,self._ctx['BUILD_DIR'], [phpizeExecPath])
-            self._runCmd(os.environ,self._ctx['BUILD_DIR'], ['ls','-lrt',phpizeExecPath])
+            self._runCmd(os.environ,self._ctx['BUILD_DIR'], ['ls','-lrt',extnDownloadDir])
+            self._logMsg ('extn dwnld dir = ' + extnDownloadDir)
             subprocess.call(['ls', '-l', extnDownloadDir])
+            
             #time.sleep(5)
             self._runCmd(os.environ, self._ctx['BUILD_DIR'],['./configure -with-IBM_DB2='+ self._ctx['IBMDBCLIDRIVER_INSTALL_DIR']] )
             self._runCmd(os.environ, self._ctx['BUILD_DIR'],['make'])
             self._runCmd(os.environ, self._ctx['BUILD_DIR'],['make','install'])
 
             os.chdir(curdir)
-                        
+            self._logMsg (   os.getcwd())         
             self._logMsg ('Installed ' + ibmdbExtn + ' Extension to ' + self._phpExtnDir)
 
         #self._modifyPhpIni()
