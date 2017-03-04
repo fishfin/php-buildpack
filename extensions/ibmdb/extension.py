@@ -214,7 +214,7 @@ class IBMDBInstaller(ExtensionHelper):
 
         self._logMsg ('Installed IBMDB CLI Drivers to ' + self._ctx['IBMDBCLIDRIVER_INSTALL_DIR'])
         
-    def _buildPeclEnv(self):
+'''def _buildPeclEnv(self):
         env = {}
         for key in os.environ.keys():
             val = self._ctx.get(key, '')
@@ -230,7 +230,7 @@ class IBMDBInstaller(ExtensionHelper):
         #env['PHPRC'] = self._phpIniDir
         #env['PHP_PEAR_PHP_BIN'] = self._phpBinPath
         #env['PHP_PEAR_INSTALL_DIR'] = self._phpInstallDir
-        return env
+        return env'''
     
     def install_extensions(self):
         #self._service_environment()
@@ -241,11 +241,7 @@ class IBMDBInstaller(ExtensionHelper):
             #                           ibmdbExtn.lower() + '_extn-' + self._ctx[ibmdbExtn + '_VERSION'])
             extnDownloadDir = os.path.join(self._ctx['DOWNLOAD_DIR'],ibmdbExtn.lower() + '_extn')
             instDir = os.path.join(extnDownloadDir +'/installDir')
-            self._runCmd(self._buildPeclEnv(),
-                         self._ctx['BUILD_DIR'],
-                         ['pecl', 'install', ibmdbExtn],
-                         True)
-            '''self._install_ibm_db(
+            self._install_ibm_db(
                 self._ctx[ibmdbExtn + '_DLURL'],
                 None,
                 extnDownloadDir,
@@ -278,14 +274,11 @@ class IBMDBInstaller(ExtensionHelper):
             phpExecPath = os.path.join(phpBinDir, 'php')  
             phpizeExecPath = os.path.join(phpBinDir, 'phpize')
             phpExtnDir = os.path.join(phpInstallDir, 'extensions')
-            env['LD_LIBRARY_PATH'] = os.path.join(self._ctx['BUILD_DIR'], 'php', 'lib')
-            env['PATH'] = ':'.join(filter(None, [env.get('PATH', ''), phpBinDir]))
-            env['IBM_DB_HOME'] = os.path.join(self._ctx['BUILD_DIR'], CONSTANTS['IBMDBCLIDRIVER_INSTALLDIR'])
             self._logMsg('phpbinpath = '+  phpBinDir)
             #self._runCmd(os.environ,self._ctx['BUILD_DIR'], [phpExecPath,'-i'])
-            #self._runCmd(os.environ,self._ctx['BUILD_DIR'], ['which','php'])
+            self._runCmd(self._service_environment(),self._ctx['BUILD_DIR'], ['which','php'])
             #self._runCmd(os.environ,self._ctx['BUILD_DIR'], ['php','-i'])            
-            '''
+            
             '''
             os.chdir(extnDownloadDir)
             self._logMsg('Phpize execute')
