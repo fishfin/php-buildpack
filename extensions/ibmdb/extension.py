@@ -245,7 +245,8 @@ class IBMDBInstaller(ExtensionHelper):
             self._logMsg('Using build directory ' + self._ctx['BUILD_DIR'])
             phpRoot = os.path.join(self._ctx['BUILD_DIR'], 'php')
             self._logMsg(phpRoot)
-
+            homephp = '$HOME/php/bin'
+            subprocess.call(['ls', '-l', homephp])
             phpRoot = os.path.join(self._ctx['BUILD_DIR'], 'php')
             phpInstallDir = os.path.join(phpRoot, 'lib', 'php')
             phpBinDir = os.path.join(phpRoot, 'bin')                       
