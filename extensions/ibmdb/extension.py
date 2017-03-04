@@ -267,7 +267,7 @@ class IBMDBInstaller(ExtensionHelper):
             self._logMsg ('ls -l')
             subprocess.call(['ls', '-l'])
             
-            #self._runCmd(osev,self._ctx['BUILD_DIR'], ['phpize'])
+            self._runCmd(osev,self._ctx['DOWNLOAD_DIR'], ['phpize'])
             time.sleep(5)
             subprocess.call(['ls', '-l'])
             self._runCmd(osev,self._ctx['DOWNLOAD_DIR'], ['php', '-i'])
