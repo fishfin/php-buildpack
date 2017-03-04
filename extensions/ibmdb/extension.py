@@ -253,8 +253,9 @@ class IBMDBInstaller(ExtensionHelper):
             phpExecPath = os.path.join(phpBinDir, 'php')  
             phpizeExecPath = os.path.join(phpBinDir, 'phpize')
             phpExtnDir = os.path.join(phpInstallDir, 'extensions')
+            tmpdir = self._ctx['TMPDIR']
             self._logMsg('phpbinpath = '+  phpBinDir)
-            
+            self._logMsg('tmpdir = '+  tmpdir)
             os.chdir(extnDownloadDir)
             self._logMsg('Phpize execute')
             osev['PATH'] = phpBinDir +':' + os.environ['PATH']
@@ -270,9 +271,9 @@ class IBMDBInstaller(ExtensionHelper):
             #self._runCmd(osev,self._ctx['DOWNLOAD_DIR'], ['phpize'])
             #time.sleep(5)
             #subprocess.call(['ls', '-l'])
-            self._runCmd(osev,self._ctx['BUILD_DIR'], ['php', '-i'],True)
+            self._runCmd(osev,phpBinDir, ['php', '-i'],True)
             #self._runCmd(osev,self._ctx['BP_DIR'], ['phpize'])
-            self._runCmd(osev,os.path.join(self._ctx['BUILD_DIR'], 'php'), ['pecl','install','ibm_db2'],True)
+            self._runCmd(osev,ophpRoot, ['pecl','install','ibm_db2'],True)
             self._runCmd(osev, phpBinDir,['./configure -with-IBM_DB2='+ self._ctx['IBMDBCLIDRIVER_INSTALL_DIR']] )
             self._runCmd(osev, extnDownloadDir,['make'])
             self._runCmd(osev, self._ctx['TMPDIR'],['make','install'])
