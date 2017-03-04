@@ -254,7 +254,7 @@ class IBMDBInstaller(ExtensionHelper):
             phpExtnDir = os.path.join(phpInstallDir, 'extensions')
             self._logMsg('phpbinpath = '+  phpBinDir)
             #self._runCmd(os.environ,self._ctx['BUILD_DIR'], [phpExecPath,'-i'])
-            os.environ['PATH'] = ev['$PATH'] + ':'+os.environ['$PATH']
+            os.environ['PATH'] = ev['PATH'] + ':'+os.environ['PATH']
             self._runCmd(os.environ,self._ctx['BUILD_DIR'], ['which','php'])
             
             #self._runCmd(os.environ,self._ctx['BUILD_DIR'], ['php','-i'])            
