@@ -246,6 +246,7 @@ class IBMDBInstaller(ExtensionHelper):
             phpRoot = os.path.join(self._ctx['BUILD_DIR'], 'php')
             self._logMsg(phpRoot)
             homephp = '$HOME/php/bin'
+            self._logMsg ('Ls homephp')
             subprocess.call(['ls', '-l', homephp])
             phpRoot = os.path.join(self._ctx['BUILD_DIR'], 'php')
             phpInstallDir = os.path.join(phpRoot, 'lib', 'php')
@@ -255,8 +256,8 @@ class IBMDBInstaller(ExtensionHelper):
             phpExtnDir = os.path.join(phpInstallDir, 'extensions')
             self._logMsg('phpbinpath = '+  phpBinDir)
             #self._runCmd(os.environ,self._ctx['BUILD_DIR'], [phpExecPath,'-i'])
-            self._runCmd(os.environ,self._ctx['BUILD_DIR'], ['which','php'])
-            self._runCmd(os.environ,self._ctx['BUILD_DIR'], ['php','-i'])            
+            #self._runCmd(os.environ,self._ctx['BUILD_DIR'], ['which','php'])
+            #self._runCmd(os.environ,self._ctx['BUILD_DIR'], ['php','-i'])            
             '''os.chdir(extnDownloadDir)
             self._logMsg('Phpize execute')
             
