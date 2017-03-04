@@ -264,7 +264,7 @@ class IBMDBInstaller(ExtensionHelper):
             osev['PATH'] = phpBinDir +':' + os.environ['PATH']
             #osev['LD_LIBRARY_PATH'] = os.path.join(phpRoot, 'lib') + ':' + osev['LD_LIBRARY_PATH']
             self._logMsg('osev path = ' + osev['PATH'])
-            self._logMsg('osev path = ' + os.environ['PATH'])
+            self._logMsg('ospath  = ' + oospath)
             #self._logMsg(osev['LD_LIBRARY_PATH'])
             self._runCmd(osev,self._ctx['BUILD_DIR'], ['ls','-lrt',extnDownloadDir])
             self._logMsg ('extn dwnld dir = ' + extnDownloadDir)
