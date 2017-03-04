@@ -99,7 +99,7 @@ class IBMDBInstaller(ExtensionHelper):
         env = {
             'IBM_DB_HOME': '$IBM_DB_HOME:$HOME/' + self._ibmdbClidriverBaseDir + '/lib',
             'LD_LIBRARY_PATH': self._phpRoot + '/lib:' + '$LD_LIBRARY_PATH:$HOME/' + self._ibmdbClidriverBaseDir + '/lib',
-            #'DB2_CLI_DRIVER_INSTALL_PATH': '$HOME/' + self._ibmdbClidriverBaseDir,
+            'DB2_CLI_DRIVER_INSTALL_PATH': '$HOME/' + self._ibmdbClidriverBaseDir,
             'PATH': self._phpRoot + '/bin:' + '$HOME/' + self._ibmdbClidriverBaseDir + '/bin:$HOME/'
                     + self._ibmdbClidriverBaseDir + '/adm:$PATH',
         }
@@ -216,7 +216,7 @@ class IBMDBInstaller(ExtensionHelper):
     
     def install_extensions(self):
         ev = self._service_environment()
-        ospath = os.environ['$PATH']
+        ospath = os.environ['PATH']
         for ibmdbExtn in ['IBM_DB2']: #, 'PDO', 'PDO_IBM']:
             #extnDownloadDir = os.path.join(self._ctx['DOWNLOAD_DIR'],
             #                           ibmdbExtn.lower() + '_extn-' + self._ctx[ibmdbExtn + '_VERSION'])
