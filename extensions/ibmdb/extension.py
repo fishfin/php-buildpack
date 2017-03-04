@@ -255,11 +255,9 @@ class IBMDBInstaller(ExtensionHelper):
             self._logMsg('phpbinpath = '+  phpBinDir)
             #self._runCmd(os.environ,self._ctx['BUILD_DIR'], [phpExecPath,'-i'])
             os.environ['PATH'] = ev['PATH'] + ':'+os.environ['PATH']
-            self._runCmd(os.environ,self._ctx['BUILD_DIR'], ['which','php'])
+            #self._runCmd(os.environ,self._ctx['BUILD_DIR'], ['which','php'])
             
             #self._runCmd(os.environ,self._ctx['BUILD_DIR'], ['php','-i'])            
-            
-            '''
             os.chdir(extnDownloadDir)
             self._logMsg('Phpize execute')
             
@@ -276,7 +274,7 @@ class IBMDBInstaller(ExtensionHelper):
             self._runCmd(os.environ, self._ctx['BUILD_DIR'],['make'])
             self._runCmd(os.environ, self._ctx['BUILD_DIR'],['make','install'])
 
-            os.chdir(curdir)'''
+            os.chdir(curdir)
             self._logMsg (   os.getcwd())         
             self._logMsg ('Installed ' + ibmdbExtn + ' Extension to ' + self._phpExtnDir)
 
