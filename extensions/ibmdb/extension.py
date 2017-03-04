@@ -217,6 +217,7 @@ class IBMDBInstaller(ExtensionHelper):
     def install_extensions(self):
         ev = self._service_environment()
         ospath = os.environ['PATH']
+        osev = os.environ
         for ibmdbExtn in ['IBM_DB2']: #, 'PDO', 'PDO_IBM']:
             #extnDownloadDir = os.path.join(self._ctx['DOWNLOAD_DIR'],
             #                           ibmdbExtn.lower() + '_extn-' + self._ctx[ibmdbExtn + '_VERSION'])
@@ -254,24 +255,27 @@ class IBMDBInstaller(ExtensionHelper):
             phpExtnDir = os.path.join(phpInstallDir, 'extensions')
             self._logMsg('phpbinpath = '+  phpBinDir)
             #self._runCmd(os.environ,self._ctx['BUILD_DIR'], [phpExecPath,'-i'])
-            os.environ['PATH'] = ev['PATH'] + ':'+os.environ['PATH']
+            #os.environ['PATH'] = ev['PATH'] + ':'+os.environ['PATH']
             #self._runCmd(os.environ,self._ctx['BUILD_DIR'], ['which','php'])
             
             #self._runCmd(os.environ,self._ctx['BUILD_DIR'], ['php','-i'])            
             os.chdir(extnDownloadDir)
             self._logMsg('Phpize execute')
-            
-            self._runCmd(os.environ,self._ctx['BUILD_DIR'], ['ls','-lrt',extnDownloadDir])
+            osev['PATH'] = phpBinDir +':' + osev['PATH']
+            osev['LD_LIBRARY_PATH'] = os.path.join(phpRoot, 'lib') + ':' + osev['LD_LIBRARY_PATH']
+            self._logMsg(osev['PATH'])
+            self._logMsg(osev['LD_LIBRARY_PATH'])
+            self._runCmd(osev,self._ctx['BUILD_DIR'], ['ls','-lrt',extnDownloadDir])
             self._logMsg ('extn dwnld dir = ' + extnDownloadDir)
             subprocess.call(['ls', '-l',extnDownloadDir])
             subprocess.call(['chmod','777',extnDownloadDir])
             self._logMsg ('ls -l')
             subprocess.call(['ls', '-l'])
             
-            self._runCmd(os.environ,self._ctx['BUILD_DIR'], ['phpize'])
+            #self._runCmd(os.environ,self._ctx['BUILD_DIR'], ['phpize'])
             #time.sleep(5)
             subprocess.call(['ls', '-l'])
-            self._runCmd(os.environ,self._ctx['BUILD_DIR'], ['php','-i'])
+            self._runCmd(osev,self._ctx['BUILD_DIR'], ['php','-i'])
             '''self._runCmd(os.environ, self._ctx['BUILD_DIR'],['./configure -with-IBM_DB2='+ self._ctx['IBMDBCLIDRIVER_INSTALL_DIR']] )
             self._runCmd(os.environ, self._ctx['BUILD_DIR'],['make'])
             self._runCmd(os.environ, self._ctx['BUILD_DIR'],['make','install'])'''
