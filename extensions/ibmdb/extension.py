@@ -221,7 +221,8 @@ class IBMDBInstaller(ExtensionHelper):
             env[key] = val if type(val) == str else json.dumps(val)
 
         env['LD_LIBRARY_PATH'] = os.path.join(self._ctx['BUILD_DIR'], 'php', 'lib')
-        env['PATH'] = ':'.join(filter(None, [env.get('PATH', ''), self._phpBinDir]))
+        #env['PATH'] = ':'.join(filter(None, [env.get('PATH', ''), self._phpBinDir]))
+        env['PATH'] = self._phpBinDir +'$PATH'
         env['IBM_DB_HOME'] = os.path.join(self._ctx['BUILD_DIR'], CONSTANTS['IBMDBCLIDRIVER_INSTALLDIR'])
         env['PHPRC'] = self._phpIniDir
         env['PHP_PEAR_PHP_BIN'] = self._phpBinPath
