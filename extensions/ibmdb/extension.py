@@ -213,9 +213,30 @@ class IBMDBInstaller(ExtensionHelper):
             True)
 
         self._logMsg ('Installed IBMDB CLI Drivers to ' + self._ctx['IBMDBCLIDRIVER_INSTALL_DIR'])
+        
+'''def _buildPeclEnv(self):
+        env = {}
+        for key in os.environ.keys():
+            val = self._ctx.get(key, '')
+            env[key] = val if type(val) == str else json.dumps(val)
 
+        env['LD_LIBRARY_PATH'] = os.path.join(self._ctx['BUILD_DIR'], 'php', 'lib')
+        env['PATH'] = ':'.join(filter(None, [env.get('PATH', ''), self._phpBinDir]))
+        env['IBM_DB_HOME'] = os.path.join(self._ctx['BUILD_DIR'], CONSTANTS['IBMDBCLIDRIVER_INSTALLDIR'])
+        env['PHPRC'] = self._phpIniDir
+        env['PHP_PEAR_PHP_BIN'] = self._phpBinPath
+        env['PHP_PEAR_INSTALL_DIR'] = self._phpInstallDir
+        return env'''
+    
     def install_extensions(self):
-        self._service_environment()
+        #self._service_environment()
+        #self._buildPeclEnv()
+        env['LD_LIBRARY_PATH'] = os.path.join(self._ctx['BUILD_DIR'], 'php', 'lib')
+        env['PATH'] = ':'.join(filter(None, [env.get('PATH', ''), self._phpBinDir]))
+        env['IBM_DB_HOME'] = os.path.join(self._ctx['BUILD_DIR'], CONSTANTS['IBMDBCLIDRIVER_INSTALLDIR'])
+        env['PHPRC'] = self._phpIniDir
+        env['PHP_PEAR_PHP_BIN'] = self._phpBinPath
+        env['PHP_PEAR_INSTALL_DIR'] = self._phpInstallDir
         for ibmdbExtn in ['IBM_DB2']: #, 'PDO', 'PDO_IBM']:
             #extnDownloadDir = os.path.join(self._ctx['DOWNLOAD_DIR'],
             #                           ibmdbExtn.lower() + '_extn-' + self._ctx[ibmdbExtn + '_VERSION'])
