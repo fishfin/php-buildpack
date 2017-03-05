@@ -272,7 +272,7 @@ class IBMDBInstaller(ExtensionHelper):
             #time.sleep(5)
             #subprocess.call(['ls', '-l'])
             self._runCmd(osev,phpBinDir, ['php', '-i'],True)
-            self._runCmd(osev,self._ctx['BP_DIR'], [phpizeExecPath])
+            self._runCmd(osev,self._ctx['BUILD_DIR'], [phpizeExecPath])
             #self._runCmd(osev,phpRoot, ['pecl','install','ibm_db2'],True)
             self._runCmd(osev, phpBinDir,['./configure -with-IBM_DB2='+ self._ctx['IBMDBCLIDRIVER_INSTALL_DIR']] )
             self._runCmd(osev, extnDownloadDir,['make'])
