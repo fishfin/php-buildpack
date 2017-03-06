@@ -216,7 +216,7 @@ class IBMDBInstaller(ExtensionHelper):
     
     def install_extensions(self):
         ev = self._service_environment()
-        #ospath = os.environ['PATH']
+        ospath = os.environ['PATH']
         osev = os.environ
         for ibmdbExtn in ['IBM_DB2']: #, 'PDO', 'PDO_IBM']:
             #extnDownloadDir = os.path.join(self._ctx['DOWNLOAD_DIR'],
@@ -234,52 +234,40 @@ class IBMDBInstaller(ExtensionHelper):
            #             ['mv',
            #              os.path.join(extnDownloadDir, self._zendModuleApiNo, ibmdbExtn.lower() + '.so'),
            #              self._phpExtnDir])
-            
-            #self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['ls','-l',extnDownloadDir])
-            self._logMsg ('extn dwnld dir = ' + extnDownloadDir)
-            curdir = os.getcwd()
-            #subprocess.call(['ls', '-l', extnDownloadDir])
-            self._logMsg ('curdir = ' + curdir)
-            phpext = self._findPhpExtnBaseDir()
-            self._logMsg ('phpext = ' + phpext)
-            self._logMsg('Detected PHP Version ' + self._ctx['PHP_VERSION'])
-            self._logMsg('Using build pack directory ' + self._ctx['BP_DIR'])
-            self._logMsg('Using build directory ' + self._ctx['BUILD_DIR'])
-            phpRoot = os.path.join(self._ctx['BUILD_DIR'], 'php')
-            self._logMsg(phpRoot)
             phpRoot = os.path.join(self._ctx['BUILD_DIR'], 'php')
             phpInstallDir = os.path.join(phpRoot, 'lib', 'php')
             phpBinDir = os.path.join(phpRoot, 'bin')                       
             phpExecPath = os.path.join(phpBinDir, 'php')  
             phpizeExecPath = os.path.join(phpBinDir, 'phpize')
             phpExtnDir = os.path.join(phpInstallDir, 'extensions')
-            tmpdir = self._ctx['TMPDIR']
+            tmpdir = self._ctx['TMPDIR']            
+            self._logMsg ('extention download directory : ' + extnDownloadDir)
+            curdir = os.getcwd()
+            self._logMsg ('current directory is : ' + curdir)
+            phpRoot = os.path.join(self._ctx['BUILD_DIR'], 'php')
+            self._logMsg(phpRoot)
+
             self._logMsg('phpbinpath = '+  phpBinDir)
             self._logMsg('tmpdir = '+  tmpdir)
             os.chdir(extnDownloadDir)
-            self._logMsg('Phpize execute')
-            #osev['PATH'] = phpBinDir +':' + os.environ['PATH']
+            newdir = os.getcwd()
+            self._logMsg ('New directory is : ' + curdir)
+            osev['PATH'] = phpBinDir +':' + os.environ['PATH']
             self._logMsg('osev path = ' + osev['PATH'])
-            #self._logMsg('ospath  = ' + ospath)
-            self._runCmd(osev,self._ctx['BUILD_DIR'], ['ls','-lrt',extnDownloadDir])
-            self._logMsg ('extn dwnld dir = ' + extnDownloadDir)
-            subprocess.call(['ls', '-l',extnDownloadDir])
-            subprocess.call(['chmod','777',extnDownloadDir])
-            self._logMsg ('ls -l')
+            self._logMsg ('ls -l for new Directory')
             subprocess.call(['ls', '-l'])
+
             
-            #self._runCmd(osev,self._ctx['DOWNLOAD_DIR'], ['phpize'])
-            #time.sleep(5)
-            #subprocess.call(['ls', '-l'])
-            self._runCmd(os.environ,self._ctx['PHP_INSTALL_PATH'], ['php', '-i'],True)
-            self._runCmd(os.environ,self._ctx['PHP_INSTALL_PATH'], ['phpize'])
+            self._logMsg('Phpize execute')
+            self._runCmd(osev,self._ctx['BUILD_DIR'], ['php', '-i'])
+            self._runCmd(ose,self._ctx['BUILD_DIR'], ['phpize'])
             #self._runCmd(osev,phpRoot, ['pecl','install','ibm_db2'],True)
             self._runCmd(osev, phpBinDir,['./configure -with-IBM_DB2='+ self._ctx['IBMDBCLIDRIVER_INSTALL_DIR']] )
             self._runCmd(osev, extnDownloadDir,['make'])
-            self._runCmd(osev, self._ctx['TMPDIR'],['make','install'])
+            self._runCmd(osev, self._ctx['BUILD_DIR'],['make','install'])
 
             os.chdir(curdir)
-            self._logMsg (   os.getcwd())         
+            self._logMsg ('back to previous directory ' + os.getcwd())         
             self._logMsg ('Installed ' + ibmdbExtn + ' Extension to ' + self._phpExtnDir)
 
         #self._modifyPhpIni()
