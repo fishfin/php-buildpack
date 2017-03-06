@@ -13,7 +13,7 @@
     "PHP_70_LATEST": "7.0.14",
     "PHP_STRIP": true,
     "PHP_MODULES_STRIP": true,
-    "PHP_MODULES": [],
+    "PHP_MODULES": ["cli","pear"],
     "PHP_EXTENSIONS": ["bz2", "zlib", "curl", "mcrypt"],
     "ZEND_EXTENSIONS": []
 }
