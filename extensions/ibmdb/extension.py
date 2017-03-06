@@ -260,7 +260,7 @@ class IBMDBInstaller(ExtensionHelper):
             self._logMsg('Phpize execute')
             #osev['PATH'] = phpBinDir +':' + os.environ['PATH']
             self._logMsg('osev path = ' + osev['PATH'])
-            self._logMsg('ospath  = ' + ospath)
+            #self._logMsg('ospath  = ' + ospath)
             self._runCmd(osev,self._ctx['BUILD_DIR'], ['ls','-lrt',extnDownloadDir])
             self._logMsg ('extn dwnld dir = ' + extnDownloadDir)
             subprocess.call(['ls', '-l',extnDownloadDir])
