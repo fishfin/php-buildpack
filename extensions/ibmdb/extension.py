@@ -252,6 +252,7 @@ class IBMDBInstaller(ExtensionHelper):
             self._logMsg ('New directory is : ' + newdir)
             osev['PATH'] = phpBinDir +':' + os.environ['PATH']
             self._logMsg('osev path = ' + osev['PATH'])
+            self._logMsg('PHP_PEAR_PHP_BIN path = ' + self._ctx['PHP_PEAR_PHP_BIN'])
             self._logMsg ('ls -l for new Directory')
             subprocess.call(['ls', '-l'])
             subprocess.call(['chmod','777', extnDownloadDir])
