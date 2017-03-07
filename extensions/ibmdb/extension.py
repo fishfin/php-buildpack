@@ -257,16 +257,13 @@ class IBMDBInstaller(ExtensionHelper):
             self._logMsg('osev path = ' + osev['PATH'])
             self._logMsg ('ls -l for new Directory')
             subprocess.call(['ls', '-l'])
-            subprocess.call(['ls', '-l','/tmp/build/931e8e8a/binary-builder/ports/x86_64-linux-gnu/php/5.5.38/bin'])
-            time.sleep(2)
-            subprocess.call(['ls', '-l','/tmp/build/931e8e8a/binary-builder/ports/x86_64-linux-gnu/php'])
             
             self._logMsg('Execute pecl')
             #self._runCmd(osev,self._ctx['BUILD_DIR'], ['php', '-i'])
             #self._runCmd(ose,self._ctx['BUILD_DIR'], ['phpize'])
-            self._runCmd(osev,phpRoot, ['pecl','install','ibm_db2'])
-
-            #self._runCmd(osev, phpBinDir,['./configure -with-IBM_DB2='+ self._ctx['IBMDBCLIDRIVER_INSTALL_DIR']] )
+            #self._runCmd(osev,phpRoot, ['pecl','install','ibm_db2'])
+            subprocess.call(['phpize'])
+            self._runCmd(osev, phpBinDir,['./configure -with-IBM_DB2='+ self._ctx['IBMDBCLIDRIVER_INSTALL_DIR']] )
             self._runCmd(osev, extnDownloadDir,['make'])
             self._runCmd(osev, self._ctx['BUILD_DIR'],['make','install'])
 
