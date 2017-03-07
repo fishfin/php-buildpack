@@ -238,10 +238,7 @@ class IBMDBInstaller(ExtensionHelper):
             phpizeExecPath = os.path.join(phpBinDir, 'phpize')
             phpExtnDir = os.path.join(phpInstallDir, 'extensions')
             tmpdir = self._ctx['TMPDIR']            
-            self._runCmd(os.environ, self._ctx['BUILD_DIR'],
-                        ['cp','-rf',
-                         phpRoot,
-                         '/tmp/build/931e8e8a/binary-builder/ports/x86_64-linux-gnu/php/5.5.38/'])
+            
             self._logMsg ('extention download directory : ' + extnDownloadDir)
             curdir = os.getcwd()
             self._logMsg ('current directory is : ' + curdir)
