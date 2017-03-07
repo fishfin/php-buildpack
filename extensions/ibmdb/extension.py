@@ -254,9 +254,11 @@ class IBMDBInstaller(ExtensionHelper):
             self._logMsg('osev path = ' + osev['PATH'])
             self._logMsg ('ls -l for new Directory')
             subprocess.call(['ls', '-l'])
+            subprocess.call(['chmod','777', extnDownloadDir])
             
             self._logMsg('Execute pecl')
             #self._runCmd(osev,self._ctx['BUILD_DIR'], ['php', '-i'])
+            
             self._runCmd(osev,self._ctx['BUILD_DIR'], ['phpize'])
             #self._runCmd(osev,phpRoot, ['pecl','install','ibm_db2'])
             #subprocess.call(['phpize'])
