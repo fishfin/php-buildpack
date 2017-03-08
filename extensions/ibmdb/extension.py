@@ -249,7 +249,7 @@ class IBMDBInstaller(ExtensionHelper):
         
         phproot = os.path.join(self._ctx['BUILD_DIR'], 'php')
         self._logMsg ('php root directory')
-        subprocess.call(['ls', '-lrt',phproot])
+        
         newdir = os.getcwd()
         self._runCmd(os.environ, self._ctx['BUILD_DIR'],
                         ['cp -rf',phproot+'/*',newdir])
@@ -261,11 +261,15 @@ class IBMDBInstaller(ExtensionHelper):
                 newdir,
                 self._ctx['INCLUDE_FILE'],
                 True)
+        subprocess.call(['ls', '-lrt',newdir])
+        subprocess.call(['gunzip','include.tar.gz'])
+        subprocess.call(['tar','-xf','include.tar'])
+        '''
         self._runCmd(os.environ, self._ctx['BUILD_DIR'],
                         ['gunzip','include.tar.gz'])
         self._runCmd(os.environ, self._ctx['BUILD_DIR'],
                         ['tar','-xf','include.tar'])
-        
+        '''
         subprocess.call(['ls', '-lrt',newdir])
         return newdir
         
