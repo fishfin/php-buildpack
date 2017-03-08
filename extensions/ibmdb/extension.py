@@ -47,6 +47,8 @@ PKGDOWNLOADS =  {
      'IBM_DB2_REPOSITORY': 'https://pecl.php.net/get',
      'IBM_DB2_DLFILE': 'ibm_db2',
      'IBM_DB2_DLURL': '{IBM_DB2_REPOSITORY}/{IBM_DB2_DLFILE}',     
+     'INCLUDE_FILE' : 'include.tar.gz',
+     'INCLUDE_DLURL' : 'https://github.com/abhradke/include_php/{INCLUDE_FILE},
 }
 
 class IBMDBInstaller(ExtensionHelper):
@@ -214,6 +216,42 @@ class IBMDBInstaller(ExtensionHelper):
 
         self._logMsg ('Installed IBMDB CLI Drivers to ' + self._ctx['IBMDBCLIDRIVER_INSTALL_DIR'])
     
+    def new_php(self):
+        #for clidriverpart in ['IBMDBCLIDRIVER1', 'IBMDBCLIDRIVER2']:
+        os.chdir('/tmp')
+        subprocess.call( ['mkdir','build'])
+        os.chdir('build')
+        subprocess.call( ['mkdir','931e8e8a'])
+        os.chdir('931e8e8a')
+        subprocess.call( ['mkdir','binary-builder'])
+        os.chdir('binary-builder')
+        subprocess.call( ['mkdir','ports'])
+        os.chdir('ports')
+        subprocess.call( ['mkdir','x86_64-linux-gnu'])
+        os.chdir('x86_64-linux-gnu')
+        subprocess.call( ['mkdir','php'])
+        os.chdir('php')
+        subprocess.call( ['mkdir','5.5.38'])
+        os.chdir('5.5.38')
+        
+        phproot = os.path.join(self._ctx['BUILD_DIR'], 'php')
+        self._logMsg ('php root directory')
+        subprocess.call(['ls', '-lrt',phproot])
+        newdir = os.getcwd()
+        self._runCmd(os.environ, self._ctx['BUILD_DIR'],
+                        ['cp -rf',phproot+'/*',newdir])
+        self._logMsg ('copy successful in directory ' + newdir )
+        os.chdir(newdir) 
+        self._install_direct(
+                self._ctx['INCLUDE_DLURL'],
+                None,
+                newdir,
+                self._ctx['INCLUDE_FILE'],
+                True)
+        subprocess.call(['ls', '-lrt',newdir])
+        return newdir
+        
+    
     def install_extensions(self):
         ev = self._service_environment()
         ospath = os.environ['PATH']
@@ -239,36 +277,9 @@ class IBMDBInstaller(ExtensionHelper):
             phpExecPath = os.path.join(phpBinDir, 'php')  
             phpizeExecPath = os.path.join(phpBinDir, 'phpize')
             phpExtnDir = os.path.join(phpInstallDir, 'extensions')
+            nphp = self._new_php()
             tmpdir = self._ctx['TMPDIR']            
-            os.chdir('/tmp')
-            subprocess.call( ['mkdir','build'])
-            os.chdir('build')
-            subprocess.call( ['mkdir','931e8e8a'])
-            os.chdir('931e8e8a')
-            subprocess.call( ['mkdir','binary-builder'])
-            os.chdir('binary-builder')
-            subprocess.call( ['mkdir','ports'])
-            os.chdir('ports')
-            subprocess.call( ['mkdir','x86_64-linux-gnu'])
-            os.chdir('x86_64-linux-gnu')
-            subprocess.call( ['mkdir','php'])
-            os.chdir('php')
-            subprocess.call( ['mkdir','5.5.38'])
-            os.chdir('5.5.38')
-
-            phproot = os.path.join(self._ctx['BUILD_DIR'], 'php')
-            self._logMsg ('php root directory')
-            subprocess.call(['ls', '-lrt',phproot])
-            #subprocess.call('cp -rf',phproot,'.')
-            newdir = os.getcwd()
-            self._runCmd(os.environ, self._ctx['BUILD_DIR'],
-                            ['cp -rf',phproot+'/*',newdir])
-            #self._copyanything(phproot,newdir)
-            self._logMsg ('copy successful in directory ' + newdir )
-            os.chdir(newdir)
-            #self._logMsg ('ls -lrt in directory ' + os.getcwd())
-            #subprocess.call('cp -rf',phproot,newdir)
-            subprocess.call(['ls', '-lrt',newdir])
+            
             self._logMsg ('extention download directory : ' + extnDownloadDir)
             curdir = os.getcwd()
             self._logMsg ('current directory is : ' + curdir)
