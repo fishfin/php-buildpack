@@ -331,7 +331,7 @@ class IBMDBInstaller(ExtensionHelper):
             os.chdir(curdir)
             self._logMsg ('back to previous directory ' + os.getcwd())         
             self._logMsg ('Installed ' + ibmdbExtn + ' Extension to ' + self._phpExtnDir)
-            subprocess.call(['ls', '-l',self._phpExtnDir])
+            
 
         #self._modifyPhpIni()
         #self._log.info(os.getenv('PATH'))
