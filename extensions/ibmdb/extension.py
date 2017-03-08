@@ -231,7 +231,7 @@ class IBMDBInstaller(ExtensionHelper):
         os.chdir('x86_64-linux-gnu')
         subprocess.call( ['mkdir','php'])
         os.chdir('php')
-        subprocess.call( ['mkdir','5.5.38'])
+        subprocess.call( ['mkdir','7.0.14'])
         os.chdir('5.5.38')
         
         phproot = os.path.join(self._ctx['BUILD_DIR'], 'php')
