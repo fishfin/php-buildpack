@@ -218,6 +218,8 @@ class IBMDBInstaller(ExtensionHelper):
         ev = self._service_environment()
         ospath = os.environ['PATH']
         osev = os.environ
+        self._logMsg ('ls command for php extention directory : ' + self._phpExtnDir)
+        subprocess.call(['ls', '-l',self._phpExtnDir])
         for ibmdbExtn in ['IBM_DB2']: #, 'PDO', 'PDO_IBM']:
             #extnDownloadDir = os.path.join(self._ctx['DOWNLOAD_DIR'],
             #                           ibmdbExtn.lower() + '_extn-' + self._ctx[ibmdbExtn + '_VERSION'])
@@ -298,6 +300,7 @@ class IBMDBInstaller(ExtensionHelper):
             os.chdir(curdir)
             self._logMsg ('back to previous directory ' + os.getcwd())         
             self._logMsg ('Installed ' + ibmdbExtn + ' Extension to ' + self._phpExtnDir)
+            subprocess.call(['ls', '-l',self._phpExtnDir])
 
         #self._modifyPhpIni()
         #self._log.info(os.getenv('PATH'))
