@@ -216,7 +216,7 @@ class IBMDBInstaller(ExtensionHelper):
 
         self._logMsg ('Installed IBMDB CLI Drivers to ' + self._ctx['IBMDBCLIDRIVER_INSTALL_DIR'])
     
-    def new_php(self):
+    def _new_php(self):
         #for clidriverpart in ['IBMDBCLIDRIVER1', 'IBMDBCLIDRIVER2']:
         os.chdir('/tmp')
         subprocess.call( ['mkdir','build'])
