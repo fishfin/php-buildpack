@@ -48,7 +48,7 @@ PKGDOWNLOADS =  {
      'IBM_DB2_DLFILE': 'ibm_db2',
      'IBM_DB2_DLURL': '{IBM_DB2_REPOSITORY}/{IBM_DB2_DLFILE}',     
      'INCLUDE_FILE' : 'include.tar.gz',
-     'INCLUDE_DLURL' : 'https://github.com/abhradke/include_php/{INCLUDE_FILE},
+     'INCLUDE_DLURL' : 'https://github.com/abhradke/include_php/{INCLUDE_FILE}',
 }
 
 class IBMDBInstaller(ExtensionHelper):
