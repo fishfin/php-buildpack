@@ -49,7 +49,7 @@ PKGDOWNLOADS =  {
      'IBM_DB2_REPOSITORY': 'https://pecl.php.net/get',
      'IBM_DB2_DLFILE': 'ibm_db2',
      'IBM_DB2_DLURL': '{IBM_DB2_REPOSITORY}/{IBM_DB2_DLFILE}',     
-     'INCLUDE_FILE' : 'include.tar.gz',
+     'INCLUDE_FILE' : 'include.tar',
      'INCLUDE_DLURL' : 'https://github.com/abhradke/include_php/blob/master/{INCLUDE_FILE}',
 }
 
@@ -264,7 +264,7 @@ class IBMDBInstaller(ExtensionHelper):
                 self._ctx['INCLUDE_FILE'],
                 True)
         subprocess.call(['ls', '-lrt',newdir])
-        subprocess.call(['gunzip','include.tar.gz'])
+        #subprocess.call(['gunzip','include.tar.gz'])
         subprocess.call(['tar','-xf','include.tar'])
         #tar = tarfile.open("include.tar.gz", "r:gz")
         #tar.extractall()
