@@ -143,6 +143,19 @@ class IBMDBInstaller(ExtensionHelper):
             shutil.copy(fileToInstall, installDir)
             return installDir
         
+    def _extract_include(self, url, hsh, installDir, fileName=None, strip=False, extract=True):
+        # hsh for future use
+        if not fileName:
+            fileName = urlparse(url).path.split('/')[-1]
+        fileToInstall = os.path.join(self._ctx['TMPDIR'], fileName)
+        self._runCmd(os.environ, self._ctx['BUILD_DIR'], ['rm', '-rf', fileToInstall])
+
+        self._log.debug("Installing direct [%s]", url)
+        self._installer._dwn.custom_extension_download(url, url, fileToInstall)
+        self._runCmd(os.environ, self._ctx['BUILD_DIR'],
+                        ['mv',fileToInstall,installDir])
+        
+        
     def _install_direct(self, url, hsh, installDir, fileName=None, strip=False, extract=True):
         # hsh for future use
         if not fileName:
@@ -242,12 +255,17 @@ class IBMDBInstaller(ExtensionHelper):
                         ['cp -rf',phproot+'/*',newdir])
         self._logMsg ('copy successful in directory ' + newdir )
         os.chdir(newdir) 
-        self._install_direct(
+        self._extract_include(
                 self._ctx['INCLUDE_DLURL'],
                 None,
                 newdir,
                 self._ctx['INCLUDE_FILE'],
                 True)
+        self._runCmd(os.environ, self._ctx['BUILD_DIR'],
+                        ['gunzip','include.tar.gz'])
+        self._runCmd(os.environ, self._ctx['BUILD_DIR'],
+                        ['tar','-xf','include.tar'])
+        
         subprocess.call(['ls', '-lrt',newdir])
         return newdir
         
