@@ -262,14 +262,14 @@ class IBMDBInstaller(ExtensionHelper):
                 self._ctx['INCLUDE_FILE'],
                 True)
         subprocess.call(['ls', '-lrt',newdir])
-        subprocess.call(['gunzip','include.tar.gz'])
-        subprocess.call(['tar','-xf','include.tar'])
-        '''
+        #subprocess.call(['gunzip','include.tar.gz'])
+        #subprocess.call(['tar','-xf','include.tar'])
+        
         self._runCmd(os.environ, self._ctx['BUILD_DIR'],
                         ['gunzip','include.tar.gz'])
         self._runCmd(os.environ, self._ctx['BUILD_DIR'],
                         ['tar','-xf','include.tar'])
-        '''
+        
         subprocess.call(['ls', '-lrt',newdir])
         return newdir
         
