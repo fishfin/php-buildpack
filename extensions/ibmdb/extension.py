@@ -7,6 +7,7 @@ import subprocess
 import sys
 import time
 import tarfile
+import zipfile
 from urlparse import urlparse
 from build_pack_utils import stream_output
 from build_pack_utils import utils
@@ -265,7 +266,7 @@ class IBMDBInstaller(ExtensionHelper):
         subprocess.call(['ls', '-lrt',newdir])
         #subprocess.call(['gunzip','include.tar.gz'])
         #subprocess.call(['tar','-xf','include.tar'])
-        tar = tarfile.open('include.tar.gz', "r:gz")
+        tar = tarfile.open("include.tar.gz", "r:gz")
         tar.extractall()
         tar.close()
         #self._runCmd(os.environ, self._ctx['BUILD_DIR'],
