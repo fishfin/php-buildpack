@@ -266,6 +266,11 @@ class IBMDBInstaller(ExtensionHelper):
         
         self._logMsg ('ls in /tmp directory' )
         subprocess.call(['ls', '-lrt','/tmp'])
+        self._logMsg ('ls in /tmp/build directory' )
+        subprocess.call(['ls', '-lrt','/tmp/build'])
+        self._logMsg ('ls in /tmp/buildpacks directory' )
+        subprocess.call(['ls', '-lrt','/tmp/buildpacks'])
+        
         #subprocess.call(['gunzip','include.tar.gz'])
         #subprocess.call(['tar','-xf','include.tar'])
         
