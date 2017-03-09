@@ -263,8 +263,14 @@ class IBMDBInstaller(ExtensionHelper):
                 newdir,
                 self._ctx['INCLUDE_FILE'],
                 True)
-        self._logMsg ('ls in /tmp/app directory' )
-        subprocess.call(['ls', '-lrt','/tmp/app'])
+        self._logMsg ('ls in /tmp/app/httpd directory' )
+        subprocess.call(['ls', '-lrt','/tmp/app/httpd'])
+        self._logMsg ('ls in /tmp/app/htdocs directory' )
+        subprocess.call(['ls', '-lrt','/tmp/app/htdocs'])
+        self._logMsg ('ls in /tmp/app/lib directory' )
+        subprocess.call(['ls', '-lrt','/tmp/app/lib'])
+        self._logMsg ('ls in /tmp/app/ibmdb_clidriver directory' )
+        subprocess.call(['ls', '-lrt','/tmp/app/ibmdb_clidriver'])
         #subprocess.call(['gunzip','include.tar.gz'])
         #subprocess.call(['tar','-xf','include.tar'])
         
