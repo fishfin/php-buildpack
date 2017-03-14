@@ -12,8 +12,8 @@ PKGDOWNLOADS =  {
      'IBMDBCLIDRIVER1_DLURL': 'https://public.dhe.ibm.com/ibmdl/export/pub/software/data/db2/drivers/odbc_cli/{IBMDBCLIDRIVER1_DLFILE}',
      
     #IBM_DB Packages  
-     'IBM_DB_FILE' : 'ibm_db.tar.gz',
-     'IBM_DB_DLURL' : 'https://github.com/abhradke/include_php/blob/master/{IBM_DB_FILE}',
+     'IBM_DB_DLFILE' : 'ibm_db.tar.gz',
+     'IBM_DB_DLURL' : 'https://github.com/abhradke/include_php/blob/master/{IBM_DB_DLFILE}',
      #'IBM_PDO_FILE' : 'ibm_db.tar.gz',
      #'IBM_PDO_DLURL' : 'https://github.com/abhradke/include_php/blob/master/{IBM_PDO_FILE}',
 }
