@@ -13,14 +13,14 @@ PKGDOWNLOADS =  {
      
     #IBM_DB Packages  
     'IBM_DB2_VERSION': '1.9.9',
-    'IBM_DB2_REPOSITORY': 'https://github.com/abhradke/include_php/blob/master/',
+    'IBM_DB2_REPOSITORY': 'https://github.com/fishfin/ibmdb-php-extensions-linuxx64',
     'IBM_DB2_DLFILE': 'ibm_db2-v{IBM_DB2_VERSION}.tar.gz',
-    'IBM_DB2_DLURL': '{IBM_DB2_REPOSITORY}/{IBM_DB2_DLFILE}',
+    'IBM_DB2_DLURL': '{IBM_DB2_REPOSITORY}/raw/master/{IBM_DB2_DLFILE}',
 
     'PDO_IBM_VERSION': '1.3.4',
-    'PDO_IBM_REPOSITORY': 'https://github.com/abhradke/include_php/blob/master/',
+    'PDO_IBM_REPOSITORY': 'https://github.com/fishfin/ibmdb-php-extensions-linuxx64',
     'PDO_IBM_DLFILE': 'pdo_ibm-v{PDO_IBM_VERSION}.tar.gz',
-    'PDO_IBM_DLURL': '{PDO_IBM_REPOSITORY}/{PDO_IBM_DLFILE}',
+    'PDO_IBM_DLURL': '{PDO_IBM_REPOSITORY}/raw/master/{PDO_IBM_DLFILE}',
 }
 
 class IBMDBInstaller(ExtensionHelper):
