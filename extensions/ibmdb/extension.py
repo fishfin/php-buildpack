@@ -12,10 +12,15 @@ PKGDOWNLOADS =  {
      'IBMDBCLIDRIVER1_DLURL': 'https://public.dhe.ibm.com/ibmdl/export/pub/software/data/db2/drivers/odbc_cli/{IBMDBCLIDRIVER1_DLFILE}',
      
     #IBM_DB Packages  
-     'IBM_DB_DLFILE' : 'ibm_db.tar.gz',
-     'IBM_DB_DLURL' : 'https://github.com/abhradke/include_php/blob/master/{IBM_DB_DLFILE}',
-     #'IBM_PDO_FILE' : 'ibm_db.tar.gz',
-     #'IBM_PDO_DLURL' : 'https://github.com/abhradke/include_php/blob/master/{IBM_PDO_FILE}',
+    'IBM_DB2_VERSION': '1.9.9',
+    'IBM_DB2_REPOSITORY': 'https://github.com/abhradke/include_php/blob/master/',
+    'IBM_DB2_DLFILE': 'ibm_db2-v{IBM_DB2_VERSION}.tar',
+    'IBM_DB2_DLURL': '{IBM_DB2_REPOSITORY}/{IBM_DB2_DLFILE}',
+
+    'PDO_IBM_VERSION': '1.3.4',
+    'PDO_IBM_REPOSITORY': 'https://github.com/abhradke/include_php/blob/master/',
+    'PDO_IBM_DLFILE': 'pdo_ibm-v{PDO_IBM_VERSION}.tar',
+    'PDO_IBM_DLURL': '{PDO_IBM_REPOSITORY}/{PDO_IBM_DLFILE}',
 }
 
 class IBMDBInstaller(ExtensionHelper):
@@ -42,8 +47,8 @@ class IBMDBInstaller(ExtensionHelper):
         pkgdownloads['DOWNLOAD_DIR'] = os.path.join('{COMPILATION_DIR}', '.downloads')        
         pkgdownloads['IBMDBCLIDRIVER_INSTALL_DIR'] = os.path.join(self._ctx['BUILD_DIR'], 'ibmdb_clidriver')
         pkgdownloads['PHPSOURCE_INSTALL_DIR'] = os.path.join('{COMPILATION_DIR}', 'php')
-        pkgdownloads['IBM_DB_DLDIR'] = os.path.join('{PHPSOURCE_INSTALL_DIR}', 'ext', 'ibm_db')
-        #pkgdownloads['PDO_IBM_DLDIR'] = os.path.join('{PHPSOURCE_INSTALL_DIR}', 'ext', 'pdo_ibm')
+        pkgdownloads['IBM_DB2_DLDIR'] = os.path.join('{PHPSOURCE_INSTALL_DIR}', 'ext', 'ibm_db')
+        pkgdownloads['PDO_IBM_DLDIR'] = os.path.join('{PHPSOURCE_INSTALL_DIR}', 'ext', 'pdo_ibm')
         return utils.FormattedDict(pkgdownloads)
 
     def _should_configure(self):
@@ -150,7 +155,7 @@ class IBMDBInstaller(ExtensionHelper):
 
     def download_extensions(self):
         self._logMsg('-- Downloading IBM DB Extensions -----------------')
-        for ibmdbExtn in ['IBM_DB']:
+        for ibmdbExtn in ['IBM_DB2', 'PDO_IBM']:
             ibmdbExtnDownloadDir = self._ctx[ibmdbExtn + '_DLDIR']
             self._install_direct(
                 self._ctx[ibmdbExtn + '_DLURL'],
@@ -159,7 +164,7 @@ class IBMDBInstaller(ExtensionHelper):
                 self._ctx[ibmdbExtn + '_DLFILE'],
                 True)
             self._runCmd(self._compilationEnv, self._ctx['BUILD_DIR'],
-                 ['cp', os.path.join(ibmdbExtnDownloadDir,  self._zendModuleApiNo,'/*'),
+                 ['cp', os.path.join(ibmdbExtnDownloadDir,  self._zendModuleApiNo, ibmdbExtn.lower() + '.so'),
                   self._phpExtnDpath])
             self._logMsg ('Installed extension ' + ibmdbExtn)
         self._logMsg('-- Downloaded IBM DB Extensions ------------------')
