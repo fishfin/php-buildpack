@@ -10,17 +10,17 @@ PKGDOWNLOADS =  {
     #CLI_DRIVER
      'IBMDBCLIDRIVER1_DLFILE': 'linuxx64_odbc_cli.tar.gz',
      'IBMDBCLIDRIVER1_DLURL': 'https://public.dhe.ibm.com/ibmdl/export/pub/software/data/db2/drivers/odbc_cli/{IBMDBCLIDRIVER1_DLFILE}',
-     
+    
     #IBM_DB Packages  
     'IBM_DB2_VERSION': '1.9.9',
     'IBM_DB2_REPOSITORY': 'https://github.com/abhradke/include_php/',
     'IBM_DB2_DLFILE': 'ibm_db2-v{IBM_DB2_VERSION}.tar.gz',
-    'IBM_DB2_DLURL': '{IBM_DB2_REPOSITORY}/blob/master/{IBM_DB2_DLFILE}',
+    'IBM_DB2_DLURL': '{IBM_DB2_REPOSITORY}/blob/master/junk/{IBM_DB2_DLFILE}',
 
     'PDO_IBM_VERSION': '1.3.4',
     'PDO_IBM_REPOSITORY': 'https://github.com/abhradke/include_php/',
     'PDO_IBM_DLFILE': 'pdo_ibm-v{PDO_IBM_VERSION}.tar.gz',
-    'PDO_IBM_DLURL': '{PDO_IBM_REPOSITORY}/blob/master/{PDO_IBM_DLFILE}',
+    'PDO_IBM_DLURL': '{PDO_IBM_REPOSITORY}/blob/master/junk/{PDO_IBM_DLFILE}',
 }
 
 class IBMDBInstaller(ExtensionHelper):
