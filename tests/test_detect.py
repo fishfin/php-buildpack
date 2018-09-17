@@ -37,6 +37,7 @@ class TestDetect(object):
         shutil.copytree('.', bp.bp_dir,
                         ignore=shutil.ignore_patterns("binaries",
                                                       "env",
+                                                      "fixtures",
                                                       "tests"))
         try:
             output = bp._detect().strip()
@@ -65,6 +66,7 @@ class TestDetect(object):
         shutil.copytree('.', bp.bp_dir,
                         ignore=shutil.ignore_patterns("binaries",
                                                       "env",
+                                                      "fixtures",
                                                       "tests"))
         try:
             output = bp._detect().strip()
@@ -73,8 +75,6 @@ class TestDetect(object):
             print str(e)
             if hasattr(e, 'output'):
                 print e.output
-            if output:
-                print output
             raise
         finally:
             if os.path.exists(bp.bp_dir):
@@ -93,6 +93,7 @@ class TestDetect(object):
         shutil.copytree('.', bp.bp_dir,
                         ignore=shutil.ignore_patterns("binaries",
                                                       "env",
+                                                      "fixtures",
                                                       "tests"))
         try:
             output = bp._detect().strip()
@@ -119,6 +120,7 @@ class TestDetect(object):
         shutil.copytree('.', bp.bp_dir,
                         ignore=shutil.ignore_patterns("binaries",
                                                       "env",
+                                                      "fixtures",
                                                       "tests"))
         try:
             output = bp._detect().strip()
@@ -146,6 +148,7 @@ class TestDetect(object):
         shutil.copytree('.', bp.bp_dir,
                         ignore=shutil.ignore_patterns("binaries",
                                                       "env",
+                                                      "fixtures",
                                                       "tests"))
         try:
             bp._detect().strip()

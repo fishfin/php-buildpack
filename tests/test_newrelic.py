@@ -111,14 +111,14 @@ class TestNewRelic(object):
         nr = newrelic.NewRelicInstaller(ctx)
         eq_(True, nr.should_install())
         eq_('x64', nr._php_arch)
-        eq_('@{HOME}/php/lib/php/extensions/no-debug-non-zts-20131226',
-            nr._php_extn_dir)
+        #eq_('@{HOME}/php/lib/php/extensions/no-debug-non-zts-20170718', nr._php_extn_dir)
         eq_(False, nr._php_zts)
-        eq_('20131226', nr._php_api)
-        eq_('@{HOME}/newrelic/agent/x64/newrelic-20131226.so', nr.newrelic_so)
+        #eq_('20170718', nr._php_api)
+        #eq_('@{HOME}/newrelic/agent/x64/newrelic-20170718.so', nr.newrelic_so)
         eq_('app-name-1', nr.app_name)
         eq_('JUNK_LICENSE', nr.license_key)
-        eq_('@{HOME}/logs/newrelic-daemon.log', nr.log_path)
+        eq_('@{HOME}/logs/newrelic.log', nr.log_path)
+        eq_('@{HOME}/logs/newrelic-daemon.log', nr.daemon_log_path)
         eq_('@{HOME}/newrelic/daemon/newrelic-daemon.x64', nr.daemon_path)
         eq_('@{HOME}/newrelic/daemon.sock', nr.socket_path)
         eq_('@{HOME}/newrelic/daemon.pid', nr.pid_path)
@@ -144,14 +144,15 @@ class TestNewRelic(object):
         nr = newrelic.NewRelicInstaller(ctx)
         eq_(True, nr.should_install())
         eq_('x64', nr._php_arch)
-        eq_('@{HOME}/php/lib/php/extensions/no-debug-non-zts-20131226',
-            nr._php_extn_dir)
+        #eq_('@{HOME}/php/lib/php/extensions/no-debug-non-zts-20170718',
+        #    nr._php_extn_dir)
         eq_(False, nr._php_zts)
-        eq_('20131226', nr._php_api)
-        eq_('@{HOME}/newrelic/agent/x64/newrelic-20131226.so', nr.newrelic_so)
+        #eq_('20170718', nr._php_api)
+        #eq_('@{HOME}/newrelic/agent/x64/newrelic-20170718.so', nr.newrelic_so)
         eq_('app-name-1', nr.app_name)
         eq_('LICENSE', nr.license_key)
-        eq_('@{HOME}/logs/newrelic-daemon.log', nr.log_path)
+        eq_('@{HOME}/logs/newrelic.log', nr.log_path)
+        eq_('@{HOME}/logs/newrelic-daemon.log', nr.daemon_log_path)
         eq_('@{HOME}/newrelic/daemon/newrelic-daemon.x64', nr.daemon_path)
         eq_('@{HOME}/newrelic/daemon.sock', nr.socket_path)
         eq_('@{HOME}/newrelic/daemon.pid', nr.pid_path)
@@ -178,14 +179,15 @@ class TestNewRelic(object):
         nr = newrelic.NewRelicInstaller(ctx)
         eq_(True, nr.should_install())
         eq_('x64', nr._php_arch)
-        eq_('@{HOME}/php/lib/php/extensions/no-debug-non-zts-20131226',
-            nr._php_extn_dir)
+        # TODO eq_('@{HOME}/php/lib/php/extensions/no-debug-non-zts-20170718',
+            #nr._php_extn_dir)
         eq_(False, nr._php_zts)
-        eq_('20131226', nr._php_api)
-        eq_('@{HOME}/newrelic/agent/x64/newrelic-20131226.so', nr.newrelic_so)
+        # TODO eq_('20170718', nr._php_api)
+        #eq_('@{HOME}/newrelic/agent/x64/newrelic-20170718.so', nr.newrelic_so)
         eq_('app-name-2', nr.app_name)
         eq_('LICENSE2', nr.license_key)
-        eq_('@{HOME}/logs/newrelic-daemon.log', nr.log_path)
+        eq_('@{HOME}/logs/newrelic.log', nr.log_path)
+        eq_('@{HOME}/logs/newrelic-daemon.log', nr.daemon_log_path)
         eq_('@{HOME}/newrelic/daemon/newrelic-daemon.x64', nr.daemon_path)
         eq_('@{HOME}/newrelic/daemon.sock', nr.socket_path)
         eq_('@{HOME}/newrelic/daemon.pid', nr.pid_path)
@@ -207,7 +209,7 @@ class TestNewRelic(object):
             lines = php_ini.readlines()
         eq_(True, lines.index('extension=%s\n' % nr.newrelic_so) >= 0)
         eq_(True, lines.index('[newrelic]\n') >= 0)
-        eq_(True, lines.index('newrelic.license=JUNK_LICENSE\n') >= 0)
+        eq_(True, lines.index('newrelic.license=@{NEWRELIC_LICENSE}\n') >= 0)
         eq_(True, lines.index('newrelic.appname=%s\n' % nr.app_name) >= 0)
 
 
@@ -306,13 +308,13 @@ dependencies:
   uri: https://download.newrelic.com/php_agent/archive/7.4.0.198/newrelic-php5-7.4.0.198-linux.tar.gz
   cf_stacks:
   - cflinuxfs2
-  md5: 3640d3cad6b5199f54a6b54a627235d6
+  sha256: 3640d3cad6b5199f54a6b54a627235d6
 - name: newrelic
   version: 6.4.0.99
   uri: https://download.newrelic.com/php_agent/archive/6.4.0.99/newrelic-php5-6.4.0.99-linux.tar.gz
   cf_stacks:
   - cflinuxfs2
-  md5: a5d5178f0f8133a65baf942a07408ba6
+  sha256: a5d5178f0f8133a65baf942a07408ba6
 '''
 GOOD_MANIFEST = '''\
 ---
@@ -328,11 +330,11 @@ dependencies:
   uri: https://download.newrelic.com/php_agent/archive/7.4.0.198/newrelic-php5-7.4.0.198-linux.tar.gz
   cf_stacks:
   - cflinuxfs2
-  md5: 3640d3cad6b5199f54a6b54a627235d6
+  sha256: 3640d3cad6b5199f54a6b54a627235d6
 - name: newrelic
   version: 6.4.0.99
   uri: https://download.newrelic.com/php_agent/archive/6.4.0.99/newrelic-php5-6.4.0.99-linux.tar.gz
   cf_stacks:
   - cflinuxfs2
-  md5: a5d5178f0f8133a65baf942a07408ba6
+  sha256: a5d5178f0f8133a65baf942a07408ba6
 '''

@@ -1,3 +1,455 @@
+v4.3.61 Sep 11, 2018
+=====================
+
+* Add newrelic 8.1.0.209 for cflinuxfs3
+
+* Add appdynamics 4.5.1.1831, remove appdynamics 4.5.0.1686
+  for stacks cflinuxfs2, cflinuxfs3 [#160195526]
+
+* Add nginx 1.15.3, remove nginx 1.15.2
+  for stacks cflinuxfs2, cflinuxfs3 [#160100616]
+
+v4.3.60 Aug 24, 2018
+=====================
+
+* Enable igbinary serialization for Redis.
+  (https://www.pivotaltracker.com/story/show/158964915)
+
+* Add php 7.1.21, remove php 7.1.19
+  (https://www.pivotaltracker.com/story/show/159897706)
+
+* Add php 7.2.9, remove php 7.2.7,
+  and update default version to 7.2.9
+  (https://www.pivotaltracker.com/story/show/159835693)
+
+* Add composer 1.7.2, remove composer 1.6.5
+  (https://www.pivotaltracker.com/story/show/159828533)
+  (https://www.pivotaltracker.com/story/show/159594183)
+
+v4.3.59 Aug 02, 2018
+=====================
+
+* Rebuild php 7.0.30, 7.0.31, 7.1.19, 7.1.20, 7.2.7, 7.2.8
+  for stacks cflinuxfs2, cflinuxfs3
+
+* Add appdynamics 4.5.0.1686, remove appdynamics 4.5.0.1547
+  for stacks cflinuxfs2, cflinuxfs3 [#159457304]
+
+* Rebuild nginx 1.14.0, 1.14.0, 1.15.1, 1.15.2
+  for stacks cflinuxfs3 [#159252955]
+
+* Rebuild httpd 2.4.34
+  for stacks cflinuxfs3 [#159251990]
+
+* Add composer 1.7.0-RC, remove composer 1.6.5
+  for stacks cflinuxfs2, cflinuxfs3 [#159270623]
+
+* Rebuild CAAPM 10.7.0
+  for stacks cflinuxfs2, cflinuxfs3 [#159251493]
+
+* Change default php version from 5.6.36 to 7.2.8.
+  (https://www.pivotaltracker.com/story/show/144939015)
+
+* Updates for supporting stacks.
+  (https://www.pivotaltracker.com/story/show/144939015)
+
+v4.3.58 Jul 20, 2018
+=====================
+
+* Add php 5.6.37, remove php 5.6.35
+  (https://www.pivotaltracker.com/story/show/159190033)
+
+* Add php 7.0.31, remove php 7.0.29
+  (https://www.pivotaltracker.com/story/show/159184032)
+
+* Add php 7.1.20, remove php 7.1.17
+  (https://www.pivotaltracker.com/story/show/159191900)
+
+* Add php 7.2.8, remove php 7.2.5
+  (https://www.pivotaltracker.com/story/show/159166665)
+
+* Add appdynamics 4.5.0.1547, remove appdynamics 4.4.3.1216
+  (https://www.pivotaltracker.com/story/show/159025420)
+  (https://www.pivotaltracker.com/story/show/158976533)
+
+* Add httpd 2.4.34, remove httpd 2.4.33
+  (https://www.pivotaltracker.com/story/show/159095662)
+
+* Add nginx 1.15.1, remove nginx 1.15.0
+  (https://www.pivotaltracker.com/story/show/158800160)
+
+v4.3.57 Jun 26, 2018
+=====================
+
+* Add php 7.1.19, remove 7.1.16
+  (https://www.pivotaltracker.com/story/show/158502251)
+
+* Add php 7.2.7, remove 7.2.4
+  (https://www.pivotaltracker.com/story/show/158468183)
+
+v4.3.56 Jun 05, 2018
+=====================
+* Support packaging with associated stacks
+  (https://www.pivotaltracker.com/story/show/153256959)
+
+* Add nginx 1.15.0, remove nginx 1.13.12
+  (https://www.pivotaltracker.com/story/show/158114558)
+
+* Remove nginx 1.12.2.
+  (https://www.pivotaltracker.com/story/show/156851318)
+
+v4.3.55 May 15, 2018
+=====================
+
+* Add default version for CA APM agent
+  (https://www.pivotaltracker.com/story/show/157446795)
+
+* Update default version of newrelic
+  (https://www.pivotaltracker.com/story/show/157204067)
+
+* Add newrelic 8.1.0.209, remove newrelic 8.0.0.204
+  (https://www.pivotaltracker.com/story/show/157204067)
+
+* Add ca_apm_php_agent 10.7.0
+  (https://www.pivotaltracker.com/story/show/157443324)
+  (https://www.pivotaltracker.com/story/show/157446795)
+
+* Update default httpd version to latest
+  (https://www.pivotaltracker.com/story/show/157256902)
+
+* Add httpd 2.4.33, remove httpd 2.4.29
+  (https://www.pivotaltracker.com/story/show/157256902)
+
+* Add appdynamics 4.4.3.1216, remove appdynamics 4.4.2.861
+  (https://www.pivotaltracker.com/story/show/157375734)
+
+v4.3.54 May 08, 2018
+=====================
+* Rebuild php binaries to include GeoIP fix from v4.3.52
+  (https://www.pivotaltracker.com/story/show/157287202)
+
+* Add appdynamics 4.4.3.1216, remove appdynamics 4.4.2.849
+  (https://www.pivotaltracker.com/story/show/157375734)
+  (https://www.pivotaltracker.com/story/show/157323165)
+
+* Add composer 1.6.5, remove composer 1.6.4
+  (https://www.pivotaltracker.com/story/show/157310510)
+
+
+v4.3.53 Apr 27, 2018
+=====================
+
+* Address MS-ISAC ADVISORY NUMBER 2018-046
+(https://www.cisecurity.org/advisory/multiple-vulnerabilities-in-php-could-allow-for-arbitrary-code-execution_2018-046/)
+
+* Add php 7.1.17, 5.6.36; remove 7.1.15, 5.6.34
+
+* Add php 7.2.5, 7.0.30; remove 7.2.3, 7.0.28
+(https://www.pivotaltracker.com/story/show/157055578)
+(https://www.pivotaltracker.com/story/show/157047336)
+
+* Update AppDynamics agent to 4.4.2.849
+  (https://www.pivotaltracker.com/story/show/154849536)
+
+* Add nginx 1.14.0
+  (https://www.pivotaltracker.com/story/show/156851318)
+  (https://www.pivotaltracker.com/story/show/156851407)
+
+* Remove xdebug from php 7.2.X modules
+  (https://www.pivotaltracker.com/story/show/156421465)
+
+* Move auth.json with composer.json, composer.lock if it exists
+  (https://www.pivotaltracker.com/story/show/156248131)
+
+* Add memcached support for php 7.0-7.2
+  (https://www.pivotaltracker.com/story/show/150392071)
+
+
+v4.3.52 Apr 16, 2018
+=====================
+* Due to GeoIP's deprecation of legacy (GeoLite) databases, only the following product IDs are supported under the free license: GeoLite-Legacy-IPv6-City, GeoLite-Legacy-IPv6-Country, 506 (GeoLite Country), 533 (GeoLite City), 517 (GeoLite ASN).
+
+* Correct CHANGELOG in previous release versions
+  - Correct v4.3.38: 'Add php 5.6.21' -> 'Add php 5.6.31', 'Remove php 5.6.19' -> 'Remove php 5.6.29'
+  - Correct v4.3.38: 'Add php 5.6.24' -> 'Add php 5.6.34', 'Remove php 5.6.22' -> 'Remove php 5.6.32'
+
+* Add support for symlinks
+
+* Add tideways extension (fork of xhprof)
+  (https://github.com/cloudfoundry/binary-builder/pull/36)
+
+* Build readline extension as a shared library
+  (https://github.com/cloudfoundry/binary-builder/pull/35/files)
+
+* Update php versions
+  - Add 5.6.35, remove 5.6.33
+  - Add 7.0.29, remove 7.0.27
+  - Add 7.1.16, remove 7.1.14
+  - Add 7.2.4, remove 7.2.2
+  (https://www.pivotaltracker.com/story/show/156360825)
+  (https://www.pivotaltracker.com/story/show/156311968)
+  (https://www.pivotaltracker.com/story/show/156317041)
+
+* Add nginx 1.13.12, remove nginx 1.13.9
+  (https://www.pivotaltracker.com/story/show/156657474)
+  (https://www.pivotaltracker.com/story/show/156133474)
+  (https://www.pivotaltracker.com/story/show/156134095)
+
+* Add composer 1.6.4, remove composer 1.6.3
+  (https://www.pivotaltracker.com/story/show/156757128)
+
+* Merge pull request #254 from CATechnologies/master
+  - Upgrades CA APM PHP Probe Agent to 10.7
+
+* Add new relic agent 8.0.0.204, remove 7.7.0.203
+  (https://www.pivotaltracker.com/story/show/155922520)
+
+
+v4.3.51 Mar 09, 2018
+=====================
+
+* Add PHP 5.6.34, 7.0.28, 7.1.15, 7.2.3
+  Remove 5.6.32, 7.0.26, 7.1.13, 7.2.1
+  (https://www.pivotaltracker.com/story/show/155576142)
+  (https://www.pivotaltracker.com/story/show/155586941)
+  (https://www.pivotaltracker.com/story/show/155589446)
+  (https://www.pivotaltracker.com/story/show/155551598)
+  (https://www.pivotaltracker.com/story/show/155610585)
+
+* Build PHP to use readline as a shared library
+  (https://www.pivotaltracker.com/story/show/155375913)
+
+* Add 4 new PHP extensions: sysvsem, sysvshm, sysvmsg and shmop.
+  (https://www.pivotaltracker.com/story/show/155141488)
+
+* Add 4 new PECL extensions: LZF, oauth, stomp, and yaml
+  (https://www.pivotaltracker.com/story/show/155348301)
+
+* Fix ioncube & phalcon for PHP 7.1
+  (https://www.pivotaltracker.com/story/show/155349336)
+
+v4.3.50 Feb 27, 2018
+=====================
+
+* Add nginx 1.13.9, remove nginx 1.13.8
+  (https://www.pivotaltracker.com/story/show/155362465)
+  (https://www.pivotaltracker.com/story/show/155361191)
+
+v4.3.49 Feb 12, 2018
+=====================
+
+* Update PHP Modules
+  - redis 3.1.4 to 3.1.6 for all
+  - xdebug 2.5.5 to 2.6.0 for php7
+  - xdebug 2.6.0 introduced to php72
+  - ioncube 6.1.0 to 10.1.1 for php5, php7
+  - ioncube 10.0.4 to 10.1.1 for php72
+  - phalcon 3.2.4 to 3.3.1 for all
+  - phpprotobufpecl 0.12.0 introduced to php7, php72
+  - yaf 3.0.5 to 3.0.6 for php7, php72
+  - lua 2.0.4 to 2.0.5 for php7, php72
+  (https://www.pivotaltracker.com/story/show/153979417)
+
+* Add php 7.1.14, remove 7.1.12
+  (https://www.pivotaltracker.com/story/show/154780800)
+
+* Add php 7.2.2, remove 7.2.0
+  (https://www.pivotaltracker.com/story/show/154760743)
+
+* Add composer 1.6.3, remove composer 1.6.2
+  (https://www.pivotaltracker.com/story/show/154808172)
+
+v4.3.48 Jan 26, 2018
+=====================
+
+* Set newrelic php agent logfile
+  (https://www.pivotaltracker.com/story/show/154434353)
+
+* Parse NEWRELIC_LICENSE from VCAP_SERVICES at runtime
+  (https://www.pivotaltracker.com/story/show/154393877)
+
+* Add newrelic agent 7.7.0.203, remove 7.6.0.201
+  (https://www.pivotaltracker.com/story/show/154221500)
+
+v4.3.47 Jan 05, 2018
+=====================
+
+* Add php 7.2.1
+  (https://www.pivotaltracker.com/story/show/154057675)
+
+* Add composer 1.6.2, remove composer 1.5.5
+  (https://www.pivotaltracker.com/story/show/154089509)
+  (https://www.pivotaltracker.com/story/show/154050459)
+  (https://www.pivotaltracker.com/story/show/153787005)
+  (https://www.pivotaltracker.com/story/show/154052768)
+  (https://www.pivotaltracker.com/story/show/153780580)
+
+* Add php 7.1.13, removed php 7.1.11
+  (https://www.pivotaltracker.com/story/show/154013043)
+
+* Add php 7.0.27, removed php 7.0.25
+  (https://www.pivotaltracker.com/story/show/153987146)
+
+* Add php 5.6.33, remove php 5.6.31
+  (https://www.pivotaltracker.com/story/show/154011603)
+* Don't write new relic license key into droplet
+  (https://www.pivotaltracker.com/story/show/146159399)
+
+* Add nginx 1.13.8, remove nginx 1.13.7
+  (https://www.pivotaltracker.com/story/show/153910485)
+
+* Remove newrelic creds from php ini file
+  (https://www.pivotaltracker.com/story/show/146159399)
+
+* Clear cache when changing cache/composer path meaning
+  (https://www.pivotaltracker.com/story/show/152304260)
+
+* Merge pull request #231 from dmikusa-pivotal/develop
+  Enable installing global Composer packages.
+
+* Merge pull request #234 from arthfl/develop
+  Lots of additions to the Dynatrace extension
+
+* Update ioncube in PHP 7.2.0 to 10.0.4
+  (https://www.pivotaltracker.com/story/show/153563813)
+
+* added detection of multiple dynatrace credential services
+
+* Enable installing global Composer packages.
+  List of changes:
+   - add COMPOSER_HOME, which dictates where Composer stores it's config
+   - move default COMPOSER_CACHE_DIR under COMPOSER_HOME
+   - create a global composer runner with its own COMPOSER_VENDOR_DIR and COMPOSER_BIN_DIR, these are both under COMPOSER_HOME
+   - use the global composer running to install global packages listed in COMPOSER_INSTAL_GLOBAL
+   - COMPOSER_INSTALL_GLOBAL is set in `defaults/options.json` and is an empty list, app dev's can add this property their own `.bp-config/options.json` and specify their own list of packages to install.
+   - Added `COMPOSER_HOME/bin` to the PATH when Composer runs to install the project's packages.  This enables users to run globally installed package binaries & scripts without needing the full path to the script.
+
+
+v4.3.46 Dec 11, 2017
+=====================
+
+* Update php modules
+  amqp 1.9.1 to 1.9.3 for all
+  cassandra 1.2.2 to 1.3.2 for php7
+  cassandracppdriver 2.7.0 to 2.8.0 for all
+  igbinary 2.0.4 to 2.0.5 for all
+  librdkafka 0.11.0 to 0.11.3 for all
+  mongodb 1.3.1 to 1.3.4 for all
+  phalcon 3.2.3 to 3.2.4 for all
+  rdkafka 3.0.4 to 3.0.5 for all
+  twig 1.34.4 to 1.35.0 for php5
+  (https://www.pivotaltracker.com/story/show/153313445)
+
+* Add PHP 7.2.0
+  (https://www.pivotaltracker.com/story/show/153210066)
+
+v4.3.45 Dec 01, 2017
+=====================
+
+* Add composer 1.5.5, remove composer 1.5.2
+  (https://www.pivotaltracker.com/story/show/153317429)
+  (https://www.pivotaltracker.com/story/show/153314270)
+  (https://www.pivotaltracker.com/story/show/153293766)
+
+* Add PHP 7.1.12, Remove PHP 7.1.10
+  (https://www.pivotaltracker.com/story/show/153096036)
+
+* Add PHP 7.0.26, Remove PHP 7.0.24
+  (https://www.pivotaltracker.com/story/show/153051750)
+
+* Add nginx 1.13.7, remove nginx 1.13.6
+  (https://www.pivotaltracker.com/story/show/153060280)
+
+v4.3.44 Nov 06, 2017
+=====================
+
+* Add php 5.6.32, 7.0.25, 7.1.11. Remove php 5.6.30, 7.0.23, 7.1.9
+  (https://www.pivotaltracker.com/story/show/152265343)
+  (https://www.pivotaltracker.com/story/show/152243439)
+  (https://www.pivotaltracker.com/story/show/152246247)
+
+* Add httpd 2.4.29. Remove httpd 2.4.28
+  (https://www.pivotaltracker.com/story/show/152049482)
+
+* Verify dependency downloads using sha256 instead of md5
+  (https://www.pivotaltracker.com/story/show/151913767)
+
+* Store profile.d dir outside app directory on recent BAL
+  (https://www.pivotaltracker.com/story/show/151381690)
+
+* Update PHP modules in latest of each version line
+  - librdkafka 0.11.0 to 0.11.1 for php7
+  - igbinary 2.0.1 to 2.0.4 for both
+  - mongodb 1.2.10 to 1.3.1 for both
+  - redis 3.1.3 to 3.1.4 for both
+  - phalcon 3.2.2 to 3.2.3 for both
+  - oci8 2.1.3 to 2.1.8 for php7
+  (https://www.pivotaltracker.com/story/show/151583193)
+
+* Add nginx 1.12.2, Remove nginx 1.12.1
+  (https://www.pivotaltracker.com/story/show/152037281)
+
+* Add newrelic agent 7.6.0.201, remove 7.5.0.199
+  (https://www.pivotaltracker.com/story/show/151856256)
+
+v4.3.43 Oct 12, 2017
+=====================
+
+* Add php 7.1.10, remove 7.1.8
+  (https://www.pivotaltracker.com/story/show/151454553)
+
+* Add php 7.0.24, remove 7.0.22
+  (https://www.pivotaltracker.com/story/show/151431933)
+
+* Add httpd 2.4.28, remove httpd 2.4.27
+  (https://www.pivotaltracker.com/story/show/151371394)
+
+* Add nginx 1.13.6, remove nginx 1.13.5
+  (https://www.pivotaltracker.com/story/show/151849194)
+
+* AppDynamics PHP Agent Support
+  (https://www.pivotaltracker.com/story/show/151305892)
+
+* CA APM PHP Agent support
+  (https://www.pivotaltracker.com/story/show/151127931)
+
+* Add libraries for gnupg
+  (https://www.pivotaltracker.com/story/show/150417054)
+
+v4.3.42 Sep 20, 2017
+=====================
+
+* Update PHP modules
+  - cassandra 1.3.0 to 1.3.2 for php5
+  - cassandracppdriver 2.5.0 to 2.7.0 for php7
+  - rdkafka 3.0.3 to 3.0.4 for both
+  - mongo 1.6.14 to 1.6.16 for php5
+  - mongodb 1.2.9 to 1.2.10 for both
+  - phalcon 3.2.1 to 3.2.2 for both
+  (https://www.pivotaltracker.com/story/show/150737604)
+
+* Handle unicode in environment variables
+  (https://www.pivotaltracker.com/story/show/150795910)
+
+* Add composer 1.5.2, remove composer 1.5.1
+  (https://www.pivotaltracker.com/story/show/150975337)
+
+* Add nginx 1.12.1, Remove nginx 1.12.0
+  (https://www.pivotaltracker.com/story/show/148042987)
+
+* Change nginx build to use PIE and BIND_NOW
+  (https://www.pivotaltracker.com/story/show/148042987)
+
+v4.3.41 Sep 05, 2017
+=====================
+
+* Add php 7.0.23 and 7.1.9, remove php 7.0.21 and 7.1.7
+  (https://www.pivotaltracker.com/story/show/150631046)
+  (https://www.pivotaltracker.com/story/show/150682567)
+
+* Update newrelic to 7.5.0.199
+  (https://www.pivotaltracker.com/story/show/150645860)
+
 v4.3.40 Aug 14, 2017
 =====================
 
@@ -32,7 +484,7 @@ v4.3.39 Jul 31, 2017
 v4.3.38 Jul 13, 2017
 =====================
 
-* Add php 5.6.21, 7.0.21, 7.1.7 and remove php 5.6.19, 7.0.19, 7.1.5
+* Add php 5.6.31, 7.0.21, 7.1.7 and remove php 5.6.29, 7.0.19, 7.1.5
   (https://www.pivotaltracker.com/story/show/148386783)
   (https://www.pivotaltracker.com/story/show/148292817)
   (https://www.pivotaltracker.com/story/show/148307943)

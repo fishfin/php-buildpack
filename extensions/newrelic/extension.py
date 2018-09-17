@@ -19,6 +19,7 @@ Downloads, installs and configures the NewRelic agent for PHP
 import os
 import os.path
 import logging
+import shutil
 from build_pack_utils.compile_extensions import CompileExtensions
 
 _log = logging.getLogger('newrelic')
@@ -96,6 +97,8 @@ class NewRelicInstaller(object):
                                " using the manual key.")
             self.license_key = self._ctx['NEWRELIC_LICENSE']
             self._detected = True
+        else:
+            self._ctx['NEWRELIC_LICENSE'] = self.license_key
 
         if self._detected:
             newrelic_so_name = 'newrelic-%s%s.so' % (
@@ -105,8 +108,11 @@ class NewRelicInstaller(object):
                                             newrelic_so_name)
             self._log.debug("PHP Extension [%s]", self.newrelic_so)
             self.log_path = os.path.join('@{HOME}', 'logs',
-                                         'newrelic-daemon.log')
+                                         'newrelic.log')
             self._log.debug("Log Path [%s]", self.log_path)
+            self.daemon_log_path = os.path.join('@{HOME}', 'logs',
+                                         'newrelic-daemon.log')
+            self._log.debug("Daemon Log Path [%s]", self.daemon_log_path)
             self.daemon_path = os.path.join(
                 '@{HOME}', 'newrelic', 'daemon',
                 'newrelic-daemon.%s' % self._php_arch)
@@ -154,9 +160,10 @@ class NewRelicInstaller(object):
         lines.insert(pos, 'extension=%s\n' % self.newrelic_so)
         lines.append('\n')
         lines.append('[newrelic]\n')
-        lines.append('newrelic.license=%s\n' % self.license_key)
+        lines.append('newrelic.license=%s\n' % '@{NEWRELIC_LICENSE}')
         lines.append('newrelic.appname=%s\n' % self.app_name)
-        lines.append('newrelic.daemon.logfile=%s\n' % self.log_path)
+        lines.append('newrelic.logfile=%s\n' % self.log_path)
+        lines.append('newrelic.daemon.logfile=%s\n' % self.daemon_log_path)
         lines.append('newrelic.daemon.location=%s\n' % self.daemon_path)
         lines.append('newrelic.daemon.port=%s\n' % self.socket_path)
         lines.append('newrelic.daemon.pidfile=%s\n' % self.pid_path)
@@ -164,6 +171,13 @@ class NewRelicInstaller(object):
             for line in lines:
                 php_ini.write(line)
 
+    def adding_environment_variables(self):
+        source      = os.path.join(self._ctx['BP_DIR'], 'extensions', 'newrelic', 'newrelic_env.sh')
+        dest        = os.path.join(self._ctx['BUILD_DIR'], '.profile.d', '0_newrelic_env.sh')
+        dest_folder = os.path.join(self._ctx['BUILD_DIR'], '.profile.d')
+        if not os.path.exists(dest_folder):
+            os.makedirs(dest_folder)
+        shutil.copyfile(source, dest)
 
 # Extension Methods
 def preprocess_commands(ctx):
@@ -175,8 +189,7 @@ def service_commands(ctx):
 
 
 def service_environment(ctx):
-    return {}
-
+    return {'NEWRELIC_LICENSE': "$NEWRELIC_LICENSE"}
 
 def compile(install):
     newrelic = NewRelicInstaller(install.builder._ctx)
@@ -184,6 +197,7 @@ def compile(install):
         _log.info("Installing NewRelic")
         install.package('NEWRELIC')
         _log.info("Configuring NewRelic in php.ini")
+        newrelic.adding_environment_variables()
         newrelic.modify_php_ini()
         _log.info("NewRelic Installed.")
     return 0

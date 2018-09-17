@@ -78,26 +78,27 @@ def load_manifest(ctx):
 
 def find_all_php_versions(dependencies):
     versions = []
+    stack = os.getenv('CF_STACK')
 
     for dependency in dependencies:
-        if dependency['name'] == 'php':
+        if dependency['name'] == 'php' and (dependency.get('cf_stacks', []) == [] or stack in dependency['cf_stacks']): # cf_stacks will be empty (or nonexistent) for a stack-associated manifest
             versions.append(dependency['version'])
 
     return versions
 
- 
+
 def validate_php_version(ctx):
     if ctx['PHP_VERSION'] in ctx['ALL_PHP_VERSIONS']:
         _log.debug('App selected PHP [%s]', ctx['PHP_VERSION'])
     else:
         _log.warning('Selected version of PHP [%s] not available.  Defaulting'
                      ' to the latest version [%s]',
-                     ctx['PHP_VERSION'], ctx['PHP_56_LATEST'])
+                     ctx['PHP_VERSION'], ctx['PHP_DEFAULT'])
 
         docs_link = 'http://docs.cloudfoundry.org/buildpacks/php/gsg-php-tips.html'
-        warn_invalid_php_version(ctx['PHP_VERSION'], ctx['PHP_56_LATEST'], docs_link)
+        warn_invalid_php_version(ctx['PHP_VERSION'], ctx['PHP_DEFAULT'], docs_link)
 
-        ctx['PHP_VERSION'] = ctx['PHP_56_LATEST']
+        ctx['PHP_VERSION'] = ctx['PHP_DEFAULT']
 
 
 def _get_supported_php_extensions(ctx):
@@ -142,7 +143,7 @@ def validate_php_extensions(ctx):
     for extension in requested_extensions:
         if extension in supported_extensions:
             filtered_extensions.append(extension)
-        elif extension.lower() not in compiled_modules:
+        elif extension.lower() not in compiled_modules and not (ctx['PHP_VERSION'].startswith('7.2.') and extension.lower() == 'mcrypt'):
             print("The extension '%s' is not provided by this buildpack." % extension, file=os.sys.stderr)
 
     ctx['PHP_EXTENSIONS'] = filtered_extensions

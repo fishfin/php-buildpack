@@ -6,27 +6,27 @@ A buildpack to deploy PHP applications to Cloud Foundry based systems, such as a
 
 ### Buildpack User Documentation
 
-Official buildpack documentation can be found at [php buildpack docs](http://docs.cloudfoundry.org/buildpacks/php/index.html.
+Official buildpack documentation can be found here: [php buildpack docs](http://docs.cloudfoundry.org/buildpacks/php/index.html).
 
 ### Building the Buildpack
 
 1. Make sure you have fetched submodules
 
-  ```bash
-  git submodule update --init
-  ```
+   ```bash
+   git submodule update --init
+   ```
 
 1. Get latest buildpack dependencies
 
-  ```shell
-  BUNDLE_GEMFILE=cf.Gemfile bundle
-  ```
+   ```shell
+   BUNDLE_GEMFILE=cf.Gemfile bundle
+   ```
 
 1. Build the buildpack
 
-  ```shell
-  BUNDLE_GEMFILE=cf.Gemfile bundle exec buildpack-packager [ --uncached | --cached ]
-  ```
+   ```shell
+   BUNDLE_GEMFILE=cf.Gemfile bundle exec buildpack-packager [ --uncached | --cached ] [ --any-stack | --stack=STACK ]
+   ```
 
 1. Use in Cloud Foundry
 
@@ -41,18 +41,20 @@ Official buildpack documentation can be found at [php buildpack docs](http://doc
 Find our guidelines [here](https://github.com/cloudfoundry/php-buildpack/blob/develop/CONTRIBUTING.md).
 
 ### Integration Tests
-Buildpacks use the [Machete](https://github.com/cloudfoundry/machete) framework for running integration tests.
+Buildpacks use the [Cutlass](https://github.com/cloudfoundry/libbuildpack/tree/master/cutlass) framework for running integration tests.
 
-To test a buildpack, run the following command from the buildpack's directory:
+To run integration tests, run the following command:
 
 ```
-BUNDLE_GEMFILE=cf.Gemfile bundle exec buildpack-build
+./script/integration
 ```
 
 ### Unit Tests
 
+To run unit tests, run the following command:
+
 ```bash
-./run_tests.sh
+./script/unit
 ```
 
 ### Requirements
@@ -97,17 +99,34 @@ Of these, the `detect` and `release` scripts are straightforward, providing the 
   - setup the runtime environment and process manager
   - generate a startup.sh script
 
-In general, you shouldn't need to modify the buildpack itself.  Instead creating an extension should be the way to go.
-
 ### Extensions
 
-The buildpack relies heavily on extensions.  An extension is simply a set of Python methods that will get called at various times during the staging process.  
+The buildpack relies heavily on extensions.  An extension is simply a set of Python methods that will get called at various times during the staging process.
 
-### Creation
+Included non-core extensions:
+- [`composer`](extensions/composer) - [Downloads, installs and runs Composer](http://docs.cloudfoundry.org/buildpacks/php/gsg-php-composer.html)
+- [`dynatrace`](extensions/dynatrace) - Downloads and configures Dynatrace OneAgent
+  - Looks for a bound service with name `dynatrace` and value `credentials` with sub-keys
+    - `apiurl`
+    - `environmentid`
+    - `apitoken`
+- [`geoip`](extensions/geoip) - Configures geoip & optionally downloads geoip databases
+  - Looks for a bound service with name `geoip-service` and value `credentials` with sub-keys
+    - `username`
+    - `license`
+    - `products`
+- [`newrelic`](extensions/newrelic) - [Downloads, installs and configures the NewRelic agent for PHP](http://docs.cloudfoundry.org/buildpacks/php/gsg-php-newrelic.html)
+- [`session`](extensions/session) - [Configures PHP to store session information in a bound Redis or Memcached service instance](http://docs.cloudfoundry.org/buildpacks/php/gsg-php-sessions.html) 
 
-To create an extension, simply create a folder.  The name of the folder will be the extension.  Inside that folder, create a file called `extension.py`. That file will contain your code.  Inside that file, put your extension methods and any additional required code.
+### Adding extensions
 
-### Methods
+In general, you shouldn't need to modify the buildpack itself.  Instead creating your own extension should be the way to go.
+
+To create an extension, simply create a folder.  The name of the folder will be the name of the extension.  Inside that folder, create a file called `extension.py`. That file will contain your code.  Inside that file, put your extension methods and any additional required code.
+
+It's not necessary to fork the buildpack to add extensions for your app. The buildpack will notice and use extensions if you place them in a `.extensions` folder at your application root. See the [extensions directory in the `cf-ex-wordpress` example](https://github.com/cloudfoundry-samples/cf-ex-wordpress/tree/master/.extensions/wordpress) for a sample.
+
+#### Methods
 
 Here is an explanation of the methods offered to an extension developer.  All of them are optional and if a method is not implemented, it is simply skipped.
 
@@ -167,7 +186,7 @@ The `compile` method is the main method and where extension authors should perfo
 
 The method is given one argument which is an Installer builder object.  The object can be used to install packages, configuration files or access the context (for examples of all this, see the core extensions like [HTTPD], [Nginx], [PHP], [Dynatrace] and [NewRelic]).  The method should return 0 when successful or any other number when it fails.  Optionally, the extension can raise an exception.  This will also signal a failure and it can provide more details about why something failed.
 
-### Method Order
+#### Method Order
 
 It is sometimes useful to know what order the buildpack will use to call the methods in an extension.  They are called in the following order.
 
@@ -217,7 +236,7 @@ def compile(install):
     return 0
 ```
 
-### Tips
+#### Tips
 
  1. To be consistent with the rest of the buildpack, extensions should import and use the standard logging module.  This will allow extension output to be incorporated into the output for the rest of the buildpack.
  1. The buildpack will run every extension that is included with the buildpack and the application.  There is no mechanism to disable specific extensions.  Thus, when you write an extension, you should make some way for the user to enable / disable it's functionality.  See the [NewRelic] extension for an example of this.
